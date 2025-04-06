@@ -1,0 +1,8 @@
+[build]
+  publish = "/"
+  command = ""
+
+[[redirects]]
+  from = "/*"
+  to = "/onthehillbjj.html"
+  status = 200

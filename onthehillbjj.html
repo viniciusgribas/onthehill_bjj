@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>On the Hill Jiu Jitsu - RJ Social Project</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-red: #c10000;
+            --primary-black: #1a1a1a;
+            --primary-gray: #333333;
+            --light-gray: #e0e0e0;
+            --white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: var(--white);
+            color: var(--primary-black);
+            line-height: 1.6;
+            /* Add padding-top to account for fixed header */
+            padding-top: 220px;
+        }
+        
+        /* Header and Navigation */
+        header {
+            background-color: var(--primary-black);
+            color: var(--white);
+            padding: 20px 0;
+            position: fixed; /* Change from relative to fixed */
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+        
+        .logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .logo img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .site-title {
+            font-size: 28px;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-align: center;
+        }
+        
+        .site-subtitle {
+            font-size: 16px;
+            color: var(--light-gray);
+            text-align: center;
+        }
+        
+        nav {
+            background-color: var(--primary-red);
+            padding: 10px 0;
+            width: 100%;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .menu li {
+            margin-right: 25px;
+        }
+        
+        .menu li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        
+        .menu li a:hover {
+            color: var(--light-gray);
+        }
+        
+        .language-selector {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .language-btn {
+            background-color: transparent;
+            border: 1px solid var(--white);
+            color: var(--white);
+            padding: 8px 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            border-radius: 4px;
+        }
+        
+        .language-btn img {
+            width: 20px;
+            height: 15px;
+            margin-right: 5px;
+        }
+        
+        .language-options {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: var(--primary-black);
+            min-width: 120px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 4px;
+            display: none;
+        }
+        
+        .language-option {
+            color: var(--white);
+            padding: 10px 15px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+        
+        .language-option:hover {
+            background-color: var(--primary-gray);
+        }
+        
+        .language-option img {
+            width: 20px;
+            height: 15px;
+            margin-right: 8px;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/api/placeholder/1200/600') center/cover no-repeat;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            max-width: 800px;
+            margin-bottom: 30px;
+        }
+        
+        .cta-btn {
+            background-color: var(--primary-red);
+            color: var(--white);
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: background-color 0.3s;
+        }
+        
+        .cta-btn:hover {
+            background-color: #990000;
+        }
+        
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+        
+        .section {
+            margin-bottom: 60px;
+        }
+        
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 25px;
+            color: var(--primary-black);
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            width: 80px;
+            background-color: var(--primary-red);
+        }
+        
+        .section-content {
+            font-size: 16px;
+            line-height: 1.8;
+        }
+        
+        .mission-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+        
+        .mission-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 15px;
+        }
+        
+        .mission-list li::before {
+            content: '✅';
+            position: absolute;
+            left: 0;
+            top: 2px;
+        }
+        
+        /* Success Stories */
+        .stories {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .story-card {
+            background-color: var(--light-gray);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .story-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .story-img {
+            height: 200px;
+            background-color: var(--primary-gray);
+        }
+        
+        .story-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .story-content {
+            padding: 20px;
+        }
+        
+        .story-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--primary-black);
+        }
+        
+        /* How to Help */
+        .help-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .help-card {
+            background-color: var(--light-gray);
+            border-radius: 8px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .help-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .help-icon {
+            font-size: 40px;
+            color: var(--primary-red);
+            margin-bottom: 15px;
+        }
+        
+        .help-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--primary-black);
+        }
+
+        .help-form-container {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .help-button {
+            background-color: var(--primary-red);
+            color: var(--white);
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .help-button i {
+            font-size: 20px;
+        }
+
+        .help-form {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: var(--light-gray);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--primary-black);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .form-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .whatsapp-btn,
+        .email-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: opacity 0.3s;
+        }
+
+        .whatsapp-btn:hover,
+        .email-btn:hover {
+            opacity: 0.9;
+        }
+
+        .whatsapp-btn i,
+        .email-btn i {
+            font-size: 20px;
+        }
+
+        .whatsapp-btn {
+            background-color: #25D366;
+            color: white;
+        }
+
+        .email-btn {
+            background-color: #DB4437;
+            color: white;
+        }
+
+        /* Contact Section */
+        .contact {
+            background-color: var(--primary-gray);
+            color: var(--white);
+            padding: 60px 0;
+        }
+        
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .contact-title {
+            font-size: 32px;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .contact-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            width: 80px;
+            background-color: var(--primary-red);
+        }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        
+        .contact-icon {
+            font-size: 20px;
+            color: var(--primary-red);
+            margin-right: 15px;
+            min-width: 25px;
+        }
+        
+        .contact-map {
+            width: 100%;
+            height: 300px;
+            background-color: var(--light-gray);
+            margin-top: 30px;
+            border-radius: 8px;
+        }
+        
+        .contact-map iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 8px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-black);
+            color: var(--white);
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-gray);
+            color: var(--white);
+            border-radius: 50%;
+            margin: 0 10px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .social-link:hover {
+            background-color: var(--primary-red);
+        }
+        
+        .footer-text {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                /* Adjust padding for mobile */
+                padding-top: 180px;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+            }
+            
+            .menu {
+                flex-direction: column;
+                width: 100%;
+                display: none;
+                margin-top: 15px;
+            }
+            
+            .menu.active {
+                display: flex;
+            }
+            
+            .menu li {
+                margin-right: 0;
+                margin-bottom: 10px;
+                text-align: center;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 10px;
+                right: 20px;
+            }
+            
+            .language-selector {
+                margin-top: 15px;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <div class="logo">
+                <img src="logo_onthehillbjj.jpg" alt="On the Hill Jiu Jitsu Logo">
+            </div>
+            <div>
+                <h1 class="site-title" data-translate="site-title">On the Hill Jiu Jitsu</h1>
+                <p class="site-subtitle" data-translate="site-subtitle">Projeto Social RJ - Morro da Babilônia</p>
+            </div>
+        </div>
+        <button class="mobile-menu-btn">☰</button>
+        <nav>
+            <div class="nav-container">
+                <ul class="menu">
+                    <li><a href="#about" data-translate="nav-about">Quem Somos</a></li>
+                    <li><a href="#mission" data-translate="nav-mission">Nossa Missão</a></li>
+                    <li><a href="#stories" data-translate="nav-stories">Histórias</a></li>
+                    <li><a href="#athletes" data-translate="nav-athletes">Atletas</a></li>
+                    <li><a href="#help" data-translate="nav-help">Como Ajudar</a></li>
+                    <li><a href="#contact" data-translate="nav-contact">Contato</a></li>
+                </ul>
+                <div class="language-selector">
+                    <button class="language-btn" id="language-btn">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMCAyMCI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjMDA5YzNiIi8+PHBvbHlnb24gcG9pbnRzPSIxNSwyIDAsMTAgMzAsMTAiIGZpbGw9IiNmZWRmMDAiLz48Y2lyY2xlIGN4PSIxNSIgY3k9IjEwIiByPSI1IiBmaWxsPSIjMDAyNzc2Ii8+PC9zdmc+" alt="BR" id="current-flag"> <span data-translate="current-language">Português</span>
+                    </button>
+                    <div class="language-options" id="language-options">
+                        <a href="#" class="language-option" data-lang="pt-BR">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMCAyMCI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjMDA5YzNiIi8+PHBvbHlnb24gcG9pbnRzPSIxNSwyIDAsMTAgMzAsMTAiIGZpbGw9IiNmZWRmMDAiLz48Y2lyY2xlIGN4PSIxNSIgY3k9IjEwIiByPSI1IiBmaWxsPSIjMDAyNzc2Ii8+PC9zdmc+" alt="Português"> Português
+                        </a>
+                        <a href="#" class="language-option" data-lang="en-US">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMCAyMCI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjIuMiIgZmlsbD0iI2IyMjIzNCIvPjxyZWN0IHg9IjAiIHk9IjQuNCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjIuMiIgZmlsbD0iI2IyMjIzNCIvPjxyZWN0IHg9IjAiIHk9IjguOCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjIuMiIgZmlsbD0iI2IyMjIzNCIvPjxyZWN0IHg9IjAiIHk9IjEzLjIiIHdpZHRoPSIzMCIgaGVpZ2h0PSIyLjIiIGZpbGw9IiNiMjIyMzQiLz48cmVjdCB4PSIwIiB5PSIxNy42IiB3aWR0aD0iMzAiIGhlaWdodD0iMi4yIiBmaWxsPSIjYjIyMjM0Ii8+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjE1IiBoZWlnaHQ9IjEwLjgiIGZpbGw9IiMzYzNiNmUiLz48L3N2Zz4=" alt="English"> English
+                        </a>
+                        <a href="#" class="language-option" data-lang="fr-FR">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMCAyMCI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjZmZmIi8+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjMDAyMzk1Ii8+PHJlY3QgeD0iMjAiIHk9IjAiIHdpZHRoPSIxMCIgaGVpZ2h0PSIyMCIgZmlsbD0iI2VkMjkzOSIvPjwvc3ZnPg==" alt="Français"> Français
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <section class="hero">
+        <h1 data-translate="hero-title">🏅 Onthehill: Transformando Realidades na Babilônia</h1>
+        <p data-translate="hero-text">Projeto de jiu-jitsu que transforma vidas na comunidade da Babilônia através do esporte, disciplina e valores.</p>
+        <a href="#help" class="cta-btn" data-translate="hero-cta">Contribua Agora</a>
+    </section>
+    
+    <main class="main-content">
+        <section id="about" class="section">
+            <h2 class="section-title" data-translate="about-title">Quem Somos</h2>
+            <div class="section-content">
+                <p data-translate="about-text">Somos um projeto social localizado na comunidade Babilônia, no bairro Leme, Rio de Janeiro. Nosso foco é proporcionar a crianças e adolescentes da Babilônia e Chapéu Mangueira uma oportunidade de desenvolvimento pessoal, físico e emocional por meio do esporte. Aqui, o tatame é mais que um lugar de treino—é um espaço de acolhimento, disciplina e superação. Nosso projeto é totalmente privado e não conta com apoio governamental. Sobrevivemos graças ao empenho, amor e dedicação de voluntários, parceiros e doações. Juntos, acreditamos no poder transformador do esporte para mudar vidas!</p>
+            </div>
+        </section>
+        
+        <section id="mission" class="section">
+            <h2 class="section-title" data-translate="mission-title">Nossa Missão</h2>
+            <div class="section-content">
+                <ul class="mission-list">
+                    <li data-translate="mission-1">Incentivar crianças e adolescentes a praticarem esportes e se desenvolverem como cidadãos.</li>
+                    <li data-translate="mission-2">Oferecer um ambiente seguro e acolhedor para aprender valores como disciplina, respeito e resiliência.</li>
+                    <li data-translate="mission-3">Apoiar nossos atletas em competições, custeando inscrições, materiais de treino, kimonos e viagens.</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section id="stories" class="section">
+            <h2 class="section-title" data-translate="stories-title">Histórias de Superação</h2>
+            <div class="section-content">
+                <p data-translate="stories-text">Nosso atleta Gabriel, mais conhecido como GB, é cria da comunidade e um exemplo vivo de como o esporte pode mudar destinos. Ele começou no projeto ainda jovem e, com muito esforço e dedicação, se tornou campeão europeu de jiu-jitsu. Sua trajetória inspira os mais novos a acreditarem em um futuro melhor. Queremos que mais crianças e adolescentes possam trilhar caminhos como o de GB.</p>
+                <div class="stories">
+                    <div class="story-card">
+                        <div class="story-img">
+                            <img src="/api/placeholder/300/200" alt="História de Sucesso">
+                        </div>
+                        <div class="story-content">
+                            <h3 class="story-title" data-translate="story-1-title">Gabriel "GB" - Campeão Europeu</h3>
+                            <p data-translate="story-1-text">De garoto da comunidade a campeão internacional, GB transformou sua vida através do jiu-jitsu e hoje inspira outros jovens.</p>
+                        </div>
+                    </div>
+                    <div class="story-card">
+                        <div class="story-img">
+                            <img src="/api/placeholder/300/200" alt="História de Sucesso">
+                        </div>
+                        <div class="story-content">
+                            <h3 class="story-title" data-translate="story-2-title">Jovens Talentos</h3>
+                            <p data-translate="story-2-text">Nossos atletas mais jovens já começam a se destacar em competições regionais, mostrando que o futuro é promissor.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="athletes" class="section">
+            <h2 class="section-title" data-translate="athletes-title">Nossos Atletas e Conquistas</h2>
+            <div class="section-content">
+                <p data-translate="athletes-text">Aqui, formamos campeões dentro e fora dos tatames. Nossos atletas já conquistaram diversos títulos regionais e internacionais. Cada competição e medalha são um reflexo de muito suor, dedicação e superação.</p>
+                <div class="stories">
+                    <div class="story-card">
+                        <div class="story-img">
+                            <img src="/api/placeholder/300/200" alt="Conquistas">
+                        </div>
+                        <div class="story-content">
+                            <h3 class="story-title" data-translate="achievement-1-title">Campeonato Europeu</h3>
+                            <p data-translate="achievement-1-text">Nosso atleta GB conquistou o título de campeão europeu, elevando o nome do projeto internacionalmente.</p>
+                        </div>
+                    </div>
+                    <div class="story-card">
+                        <div class="story-img">
+                            <img src="/api/placeholder/300/200" alt="Conquistas">
+                        </div>
+                        <div class="story-content">
+                            <h3 class="story-title" data-translate="achievement-2-title">Campeonatos Regionais</h3>
+                            <p data-translate="achievement-2-text">Diversos atletas se destacam em competições no Rio de Janeiro, conquistando medalhas e reconhecimento.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="help" class="section">
+            <h2 class="section-title" data-translate="help-title">Como Você Pode Ajudar</h2>
+            <div class="section-content">
+                <p data-translate="help-text">Sua contribuição nos ajuda a manter o projeto funcionando e a transformar vidas! Você pode apoiar de diferentes formas:</p>
+                <div class="help-options">
+                    <div class="help-card">
+                        <div class="help-icon">💰</div>
+                        <h3 class="help-title" data-translate="help-1-title">Doações Financeiras</h3>
+                        <p data-translate="help-1-text">Para custos de professores, materiais de apoio, kimonos e tatames.</p>
+                    </div>
+                    <div class="help-card">
+                        <div class="help-icon">🏅</div>
+                        <h3 class="help-title" data-translate="help-2-title">Patrocínio de Atletas</h3>
+                        <p data-translate="help-2-text">Ajuda com inscrições e viagens para campeonatos.</p>
+                    </div>
+                    <div class="help-card">
+                        <div class="help-icon">👐</div>
+                        <h3 class="help-title" data-translate="help-3-title">Voluntariado e Parcerias</h3>
+                        <p data-translate="help-3-text">Para fortalecer nosso projeto e alcançar mais jovens.</p>
+                    </div>
+                </div>
+                <div class="help-form-container">
+                    <button class="help-button" onclick="toggleHelpForm()">
+                        <i class="fas fa-hands-helping"></i> <span data-translate="help-button">Clique aqui para ajudar</span>
+                    </button>
+                    <form id="helpForm" class="help-form" style="display: none;">
+                        <div class="form-group">
+                            <label for="name"><span data-translate="form-name">Nome</span>:</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact"><span data-translate="form-contact">Contato</span>:</label>
+                            <input type="text" id="contact" name="contact" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="comments"><span data-translate="form-comments">Comentários</span>:</label>
+                            <textarea id="comments" name="comments" rows="4"></textarea>
+                        </div>
+                        <div class="form-buttons">
+                            <button type="button" onclick="sendWhatsApp()" class="whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </button>
+                            <button type="button" onclick="sendEmail()" class="email-btn">
+                                <i class="far fa-envelope"></i> Email
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <section id="contact" class="contact">
+        <div class="contact-container">
+            <h2 class="contact-title" data-translate="contact-title">Junte-se a Nós!</h2>
+            <div class="contact-info">
+                <div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <strong data-translate="contact-address-label">Endereço:</strong>
+                            <p data-translate="contact-address">Ladeira Ary Barroso, S/N - Quadra Esportiva da Babilônia</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🕒</div>
+                        <div>
+                            <strong data-translate="contact-hours-label">Horários:</strong>
+                            <p data-translate="contact-hours">Aulas de segunda a quinta-feira, das 19h30 às 21h</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div>
+                            <strong data-translate="contact-social-label">Instagram:</strong>
+                            <p><a href="https://www.instagram.com/onthehillbjj/" target="_blank" style="color: white; text-decoration: underline;">@onthehillbjj</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="contact-item">
+                        <div class="contact-icon">👨‍🏫</div>
+                        <div>
+                            <strong data-translate="contact-teacher-label">Professor:</strong>
+                            <p data-translate="contact-teacher">Bruno Iglesias - Faixa Preta 3º Grau</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🏆</div>
+                        <div>
+                            <strong data-translate="contact-achievements-label">Conquistas:</strong>
+                            <p data-translate="contact-achievements">World Nogi 🥇 World IBJJF 2x 🥉 Rio Open 2x 🥇 Floripa Open 🥇 South American 🥉</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3673.8904254736716!2d-43.17248482532165!3d-22.96420247962751!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9bd545785824bd%3A0x1864a53a83c61e73!2sLadeira%20Ary%20Barroso%20-%20Leme%2C%20Rio%20de%20Janeiro%20-%20RJ!5e0!3m2!1sen!2sbr!4v1712438438088!5m2!1sen!2sbr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="https://www.instagram.com/onthehillbjj/" class="social-link" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                </a>
+                <a href="#" class="social-link" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                </a>
+                <a href="#" class="social-link" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                </a>
+            </div>
+            <p class="footer-text">&copy; 2025 On the Hill Jiu Jitsu - <span data-translate="footer-rights">Todos os direitos reservados</span></p>
+            <p class="footer-text">
+                <span data-translate="footer-developer">Desenvolvido por </span>
+                <a href="https://github.com/viniciusgribas/" target="_blank" style="color: var(--primary-red); text-decoration: none;">@viniciusgribas</a>
+            </p>
+        </div>
+    </footer>
+    
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const menu = document.querySelector('.menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            menu.classList.toggle('active');
+        });
+        
+        // Language Selector
+        const languageBtn = document.getElementById('language-btn');
+        const languageOptions = document.getElementById('language-options');
+        const currentFlag = document.getElementById('current-flag');
+        const currentLanguage = document.querySelector('[data-translate="current-language"]');
+        
+        languageBtn.addEventListener('click', () => {
+            languageOptions.style.display = languageOptions.style.display === 'block' ? 'none' : 'block';
+        });
+        
+        // Close language options when clicking outside
+        document.addEventListener('click', (event) => {
+            if (!event.target.closest('.language-selector')) {
+                languageOptions.style.display = 'none';
+            }
+        });
+        
+        // Translations
+        const translations = {
+            'pt-BR': {
+                'site-title': 'On the Hill Jiu Jitsu',
+                'site-subtitle': 'Projeto Social RJ - Morro da Babilônia',
+                'nav-about': 'Quem Somos',
+                'nav-mission': 'Nossa Missão',
+                'nav-stories': 'Histórias',
+                'nav-athletes': 'Atletas',
+                'nav-help': 'Como Ajudar',
+                'nav-contact': 'Contato',
+                'current-language': 'Português',
+                'hero-title': '🏅 Onthehill: Transformando Realidades na Babilônia',
+                'hero-text': 'Projeto de jiu-jitsu que transforma vidas na comunidade da Babilônia através do esporte, disciplina e valores.',
+                'hero-cta': 'Contribua Agora',
+                'about-title': 'Quem Somos',
+                'about-text': 'Somos um projeto social localizado na comunidade Babilônia, no bairro Leme, Rio de Janeiro. Nosso foco é proporcionar a crianças e adolescentes da Babilônia e Chapéu Mangueira uma oportunidade de desenvolvimento pessoal, físico e emocional por meio do esporte. Aqui, o tatame é mais que um lugar de treino—é um espaço de acolhimento, disciplina e superação. Nosso projeto é totalmente privado e não conta com apoio governamental. Sobrevivemos graças ao empenho, amor e dedicação de voluntários, parceiros e doações. Juntos, acreditamos no poder transformador do esporte para mudar vidas!',
+                'mission-title': 'Nossa Missão',
+                'mission-1': 'Incentivar crianças e adolescentes a praticarem esportes e se desenvolverem como cidadãos.',
+                'mission-2': 'Oferecer um ambiente seguro e acolhedor para aprender valores como disciplina, respeito e resiliência.',
+                'mission-3': 'Apoiar nossos atletas em competições, custeando inscrições, materiais de treino, kimonos e viagens.',
+                'stories-title': 'Histórias de Superação',
+                'stories-text': 'Nosso atleta Gabriel, mais conhecido como GB, é cria da comunidade e um exemplo vivo de como o esporte pode mudar destinos. Ele começou no projeto ainda jovem e, com muito esforço e dedicação, se tornou campeão europeu de jiu-jitsu. Sua trajetória inspira os mais novos a acreditarem em um futuro melhor. Queremos que mais crianças e adolescentes possam trilhar caminhos como o de GB.',
+                'story-1-title': 'Gabriel "GB" - Campeão Europeu',
+                'story-1-text': 'De garoto da comunidade a campeão internacional, GB transformou sua vida através do jiu-jitsu e hoje inspira outros jovens.',
+                'story-2-title': 'Jovens Talentos',
+                'story-2-text': 'Nossos atletas mais jovens já começam a se destacar em competições regionais, mostrando que o futuro é promissor.',
+                'athletes-title': 'Nossos Atletas e Conquistas',
+                'athletes-text': 'Aqui, formamos campeões dentro e fora dos tatames. Nossos atletas já conquistaram diversos títulos regionais e internacionais. Cada competição e medalha são um reflexo de muito suor, dedicação e superação.',
+                'achievement-1-title': 'Campeonato Europeu',
+                'achievement-1-text': 'Nosso atleta GB conquistou o título de campeão europeu, elevando o nome do projeto internacionalmente.',
+                'achievement-2-title': 'Campeonatos Regionais',
+                'achievement-2-text': 'Diversos atletas se destacam em competições no Rio de Janeiro, conquistando medalhas e reconhecimento.',
+                'help-title': 'Como Você Pode Ajudar',
+                'help-text': 'Sua contribuição nos ajuda a manter o projeto funcionando e a transformar vidas! Você pode apoiar de diferentes formas:',
+                'help-1-title': 'Doações Financeiras',
+                'help-1-text': 'Para custos de professores, materiais de apoio, kimonos e tatames.',
+                'help-2-title': 'Patrocínio de Atletas',
+                'help-2-text': 'Ajuda com inscrições e viagens para campeonatos.',
+                'help-3-title': 'Voluntariado e Parcerias',
+                'help-3-text': 'Para fortalecer nosso projeto e alcançar mais jovens.',
+                'help-button': 'Clique aqui para ajudar',
+                'form-name': 'Nome',
+                'form-contact': 'Contato',
+                'form-comments': 'Comentários',
+                'contact-title': 'Junte-se a Nós!',
+                'contact-address-label': 'Endereço:',
+                'contact-address': 'Ladeira Ary Barroso, S/N - Quadra Esportiva da Babilônia',
+                'contact-hours-label': 'Horários:',
+                'contact-hours': 'Aulas de segunda a quinta-feira, das 19h30 às 21h',
+                'contact-social-label': 'Instagram:',
+                'contact-teacher-label': 'Professor:',
+                'contact-teacher': 'Bruno Iglesias - Faixa Preta 3º Grau',
+                'contact-achievements-label': 'Conquistas:',
+                'contact-achievements': 'World Nogi 🥇 World IBJJF 2x 🥉 Rio Open 2x 🥇 Floripa Open 🥇 South American 🥉',
+                'footer-rights': 'Todos os direitos reservados',
+                'footer-developer': 'Desenvolvido por '
+            },
+            'en-US': {
+                'site-title': 'On the Hill Jiu Jitsu',
+                'site-subtitle': 'RJ Social Project - Babilônia Hill',
+                'nav-about': 'About Us',
+                'nav-mission': 'Our Mission',
+                'nav-stories': 'Stories',
+                'nav-athletes': 'Athletes',
+                'nav-help': 'How to Help',
+                'nav-contact': 'Contact',
+                'current-language': 'English',
+                'hero-title': '🏅 Onthehill: Transforming Lives in Babilônia',
+                'hero-text': 'A jiu-jitsu project that transforms lives in the Babilônia community through sport, discipline, and values.',
+                'hero-cta': 'Contribute Now',
+                'about-title': 'About Us',
+                'about-text': 'We are a social project located in the Babilônia community, in the Leme neighborhood, Rio de Janeiro. Our focus is to provide children and adolescents from Babilônia and Chapéu Mangueira with an opportunity for personal, physical, and emotional development through sports. Here, the mat is more than a training place—its a space for welcoming, discipline, and overcoming challenges. Our project is entirely private and does not receive government support. We survive thanks to the commitment, love, and dedication of volunteers, partners, and donations. Together, we believe in the transformative power of sports to change lives!',
+                'mission-title': 'Our Mission',
+                'mission-1': 'Encourage children and adolescents to practice sports and develop as citizens.',
+                'mission-2': 'Provide a safe and welcoming environment to learn values such as discipline, respect, and resilience.',
+                'mission-3': 'Support our athletes in competitions by funding registrations, training materials, kimonos, and travel.',
+                'stories-title': 'Success Stories',
+                'stories-text': 'Our athlete Gabriel, better known as GB, is from the community and a living example of how sports can change destinies. He started in the project while young and, with a lot of effort and dedication, became a European jiu-jitsu champion. His journey inspires younger ones to believe in a better future. We want more children and adolescents to follow paths like GB\'s.',
+                'story-1-title': 'Gabriel "GB" - European Champion',
+                'story-1-text': 'From a community boy to an international champion, GB transformed his life through jiu-jitsu and now inspires other young people.',
+                'story-2-title': 'Young Talents',
+                'story-2-text': 'Our youngest athletes are already standing out in regional competitions, showing that the future is promising.',
+                'athletes-title': 'Our Athletes and Achievements',
+                'athletes-text': 'Here, we form champions both on and off the mats. Our athletes have already won several regional and international titles. Each competition and medal reflects a lot of sweat, dedication, and perseverance.',
+                'achievement-1-title': 'European Championship',
+                'achievement-1-text': 'Our athlete GB won the European champion title, elevating the project\'s name internationally.',
+                'achievement-2-title': 'Regional Championships',
+                'achievement-2-text': 'Several athletes stand out in competitions in Rio de Janeiro, winning medals and recognition.',
+                'help-title': 'How You Can Help',
+                'help-text': 'Your contribution helps us keep the project running and transform lives! You can support in different ways:',
+                'help-1-title': 'Financial Donations',
+                'help-1-text': 'For teacher costs, support materials, kimonos, and mats.',
+                'help-2-title': 'Athlete Sponsorship',
+                'help-2-text': 'Help with registrations and travel to championships.',
+                'help-3-title': 'Volunteering and Partnerships',
+                'help-3-text': 'To strengthen our project and reach more young people.',
+                'help-button': 'Click here to help',
+                'form-name': 'Name',
+                'form-contact': 'Contact',
+                'form-comments': 'Comments',
+                'contact-title': 'Join Us!',
+                'contact-address-label': 'Address:',
+                'contact-address': 'Ladeira Ary Barroso, S/N - Babilônia Sports Court',
+                'contact-hours-label': 'Hours:',
+                'contact-hours': 'Classes Monday to Thursday, from 7:30 PM to 9:00 PM',
+                'contact-social-label': 'Instagram:',
+                'contact-teacher-label': 'Teacher:',
+                'contact-teacher': 'Bruno Iglesias - 3rd Degree Black Belt',
+                'contact-achievements-label': 'Achievements:',
+                'contact-achievements': 'World Nogi 🥇 World IBJJF 2x 🥉 Rio Open 2x 🥇 Floripa Open 🥇 South American 🥉',
+                'footer-rights': 'All rights reserved',
+                'footer-developer': 'Developed by '
+            },
+            'fr-FR': {
+                'site-title': 'On the Hill Jiu Jitsu',
+                'site-subtitle': 'Projet Social RJ - Colline de Babilônia',
+                'nav-about': 'Qui Sommes-Nous',
+                'nav-mission': 'Notre Mission',
+                'nav-stories': 'Histoires',
+                'nav-athletes': 'Athlètes',
+                'nav-help': 'Comment Aider',
+                'nav-contact': 'Contact',
+                'current-language': 'Français',
+                'hero-title': '🏅 Onthehill: Transformer des Vies à Babilônia',
+                'hero-text': 'Un projet de jiu-jitsu qui transforme des vies dans la communauté de Babilônia par le sport, la discipline et les valeurs.',
+                'hero-cta': 'Contribuer Maintenant',
+                'about-title': 'Qui Sommes-Nous',
+                'about-text': 'Nous sommes un projet social situé dans la communauté de Babilônia, dans le quartier de Leme, à Rio de Janeiro. Notre objectif est d\'offrir aux enfants et adolescents de Babilônia et Chapéu Mangueira une opportunité de développement personnel, physique et émotionnel par le sport. Ici, le tatami est plus qu\'un lieu d\'entraînement — c\'est un espace d\'accueil, de discipline et de dépassement. Notre projet est entièrement privé et ne bénéficie pas de soutien gouvernemental. Nous survivons grâce à l\'engagement, l\'amour et le dévouement des bénévoles, des partenaires et des dons. Ensemble, nous croyons au pouvoir transformateur du sport pour changer des vies !',
+                'mission-title': 'Notre Mission',
+                'mission-1': 'Encourager les enfants et les adolescents à pratiquer le sport et à se développer en tant que citoyens.',
+                'mission-2': 'Offrir un environnement sûr et accueillant pour apprendre des valeurs telles que la discipline, le respect et la résilience.',
+                'mission-3': 'Soutenir nos athlètes dans les compétitions en finançant les inscriptions, le matériel d\'entraînement, les kimonos et les voyages.',
+                'stories-title': 'Histoires de Réussite',
+                'stories-text': 'Notre athlète Gabriel, mieux connu sous le nom de GB, est issu de la communauté et un exemple vivant de la façon dont le sport peut changer les destinées. Il a commencé dans le projet quand il était jeune et, avec beaucoup d\'efforts et de dévouement, est devenu champion européen de jiu-jitsu. Son parcours inspire les plus jeunes à croire en un avenir meilleur. Nous voulons que davantage d\'enfants et d\'adolescents puissent suivre des chemins comme celui de GB.',
+                'story-1-title': 'Gabriel "GB" - Champion d\'Europe',
+                'story-1-text': 'D\'un garçon de la communauté à un champion international, GB a transformé sa vie grâce au jiu-jitsu et inspire maintenant d\'autres jeunes.',
+                'story-2-title': 'Jeunes Talents',
+                'story-2-text': 'Nos plus jeunes athlètes se démarquent déjà dans des compétitions régionales, montrant que l\'avenir est prometteur.',
+                'athletes-title': 'Nos Athlètes et Réalisations',
+                'athletes-text': 'Ici, nous formons des champions sur et en dehors des tatamis. Nos athlètes ont déjà remporté plusieurs titres régionaux et internationaux. Chaque compétition et médaille reflète beaucoup de sueur, de dévouement et de persévérance.',
+                'achievement-1-title': 'Championnat d\'Europe',
+                'achievement-1-text': 'Notre athlète GB a remporté le titre de champion d\'Europe, élevant le nom du projet à l\'international.',
+                'achievement-2-title': 'Championnats Régionaux',
+                'achievement-2-text': 'Plusieurs athlètes se démarquent dans des compétitions à Rio de Janeiro, remportant des médailles et de la reconnaissance.',
+                'help-title': 'Comment Vous Pouvez Aider',
+                'help-text': 'Votre contribution nous aide à maintenir le projet en fonctionnement et à transformer des vies ! Vous pouvez soutenir de différentes manières :',
+                'help-1-title': 'Dons Financiers',
+                'help-1-text': 'Pour les coûts des professeurs, du matériel de soutien, des kimonos et des tatamis.',
+                'help-2-title': 'Parrainage d\'Athlètes',
+                'help-2-text': 'Aide aux inscriptions et aux voyages pour les championnats.',
+                'help-3-title': 'Bénévolat et Partenariats',
+                'help-3-text': 'Pour renforcer notre projet et atteindre plus de jeunes.',
+                'help-button': 'Cliquez ici pour aider',
+                'form-name': 'Nom',
+                'form-contact': 'Contact',
+                'form-comments': 'Commentaires',
+                'contact-title': 'Rejoignez-nous !',
+                'contact-address-label': 'Adresse :',
+                'contact-address': 'Ladeira Ary Barroso, S/N - Terrain de Sport de Babilônia',
+                'contact-hours-label': 'Horaires :',
+                'contact-hours': 'Cours du lundi au jeudi, de 19h30 à 21h00',
+                'contact-social-label': 'Instagram :',
+                'contact-teacher-label': 'Professeur :',
+                'contact-teacher': 'Bruno Iglesias - Ceinture Noire 3ème Degré',
+                'contact-achievements-label': 'Réalisations :',
+                'contact-achievements': 'World Nogi 🥇 World IBJJF 2x 🥉 Rio Open 2x 🥇 Floripa Open 🥇 South American 🥉',
+                'footer-rights': 'Tous droits réservés',
+                'footer-developer': 'Développé par '
+            }
+        };
+        
+        // Set language
+        function setLanguage(lang) {
+            const elements = document.querySelectorAll('[data-translate]');
+            
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    if (element.tagName === 'INPUT') {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        element.textContent = translations[lang][key];
+                    }
+                }
+            });
+            
+            // Update flag and language text
+            const langData = {
+                'pt-BR': {
+                    flag: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMCAyMCI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjMDA5YzNiIi8+PHBvbHlnb24gcG9pbnRzPSIxNSwyIDAsMTAgMzAsMTAiIGZpbGw9IiNmZWRmMDAiLz48Y2lyY2xlIGN4PSIxNSIgY3k9IjEwIiByPSI1IiBmaWxsPSIjMDAyNzc2Ii8+PC9zdmc+",
+                    text: "Português"
+                },
+                'en-US': {
+                    flag: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMCAyMCI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjIuMiIgZmlsbD0iI2IyMjIzNCIvPjxyZWN0IHg9IjAiIHk9IjQuNCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjIuMiIgZmlsbD0iI2IyMjIzNCIvPjxyZWN0IHg9IjAiIHk9IjguOCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjIuMiIgZmlsbD0iI2IyMjIzNCIvPjxyZWN0IHg9IjAiIHk9IjEzLjIiIHdpZHRoPSIzMCIgaGVpZ2h0PSIyLjIiIGZpbGw9IiNiMjIyMzQiLz48cmVjdCB4PSIwIiB5PSIxNy42IiB3aWR0aD0iMzAiIGhlaWdodD0iMi4yIiBmaWxsPSIjYjIyMjM0Ii8+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjE1IiBoZWlnaHQ9IjEwLjgiIGZpbGw9IiMzYzNiNmUiLz48L3N2Zz4=",
+                    text: "English"
+                },
+                'fr-FR': {
+                    flag: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMCAyMCI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjZmZmIi8+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjMDAyMzk1Ii8+PHJlY3QgeD0iMjAiIHk9IjAiIHdpZHRoPSIxMCIgaGVpZ2h0PSIyMCIgZmlsbD0iI2VkMjkzOSIvPjwvc3ZnPg==",
+                    text: "Français"
+                }
+            };
+            
+            currentFlag.src = langData[lang].flag;
+            currentLanguage.textContent = langData[lang].text;
+            
+            // Update HTML lang attribute
+            document.documentElement.lang = lang;
+            
+            // Close dropdown
+            languageOptions.style.display = 'none';
+        }
+        
+        // Add event listeners to language options
+        document.querySelectorAll('.language-option').forEach(option => {
+            option.addEventListener('click', (e) => {
+                e.preventDefault();
+                const lang = option.getAttribute('data-lang');
+                setLanguage(lang);
+            });
+        });
+        
+        // Set default language
+        setLanguage('pt-BR');
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === "#") return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Close mobile menu if open
+                    menu.classList.remove('active');
+                }
+            });
+        });
+        
+        // Animation on scroll (simple implementation)
+        function checkVisibility() {
+            const sections = document.querySelectorAll('.section');
+            const windowHeight = window.innerHeight;
+            
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                if (sectionTop < windowHeight - 100) {
+                    section.classList.add('fade-in');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', checkVisibility);
+        checkVisibility(); // Check on page load
+
+        // Add this new function for logo image handling
+        function setupLogoImage() {
+            const logoImg = document.querySelector('.logo img');
+            
+            logoImg.addEventListener('load', function() {
+                const img = this;
+                const naturalWidth = img.naturalWidth;
+                const naturalHeight = img.naturalHeight;
+                
+                // If image is not square, calculate the crop dimensions
+                if (naturalWidth !== naturalHeight) {
+                    const size = Math.min(naturalWidth, naturalHeight);
+                    const x = (naturalWidth - size) / 2;
+                    const y = (naturalHeight - size) / 2;
+                    
+                    // Apply square cropping through object-position
+                    img.style.objectPosition = `-${x}px -${y}px`;
+                }
+            });
+            
+            // Error handling for logo image
+            logoImg.addEventListener('error', function() {
+                console.error('Error loading logo image');
+                this.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj48Y2lyY2xlIGN4PSIxMDAiIGN5PSIxMDAiIHI9IjEwMCIgZmlsbD0iIzAwMCIvPjxwYXRoIGQ9Ik01MCwxMDBhNTAsNTAgMCAxLDAgMTAwLDAgNTAsNTAgMCAxLDAtMTAwLDB6IiBmaWxsPSIjYzEwMDAwIi8+PHRleHQgeD0iMTAwIiB5PSIxMDUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyMCIgZm9udC13ZWlnaHQ9ImJvbGQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmYiPk9USCBCSkosIDwvdGV4dD48L3N2Zz4='; // Fallback to placeholder
+            });
+        }
+        
+        // Initialize logo image handling
+        document.addEventListener('DOMContentLoaded', setupLogoImage);
+
+        // Help Form Functions
+        function toggleHelpForm() {
+            const form = document.getElementById('helpForm');
+            form.style.display = form.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function sendWhatsApp() {
+            const name = document.getElementById('name').value;
+            const contact = document.getElementById('contact').value;
+            const comments = document.getElementById('comments').value;
+            const message = `Olá! Me chamo ${name}.\nContato: ${contact}\nComentários: ${comments}`;
+            const whatsappUrl = `https://wa.me/+5521XXXXXXXXX?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        function sendEmail() {
+            const name = document.getElementById('name').value;
+            const contact = document.getElementById('contact').value;
+            const comments = document.getElementById('comments').value;
+            const subject = 'Contato - On the Hill BJJ';
+            const body = `Nome: ${name}\nContato: ${contact}\nComentários: ${comments}`;
+            const mailtoUrl = `mailto:your@email.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.location.href = mailtoUrl;
+        }
+    </script>
+</body>
+</html>
