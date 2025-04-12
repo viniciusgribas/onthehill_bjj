@@ -821,8 +821,9 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            z-index: 0;
-            transition: transform 0.5s ease;
+            opacity: 0.3;
+            z-index: -1;
+            transition: transform 0.5s ease, opacity 0.5s ease;
         }
         
         .help-card:hover {
@@ -1891,6 +1892,12 @@
             form.style.display = form.style.display === 'none' ? 'block' : 'none';
         }
 
+        /**
+         * Opens a new window with a WhatsApp link, containing the user's input from the help form.
+         * The link is in the format: https://wa.me/+5521996592104?text=<message>
+         * The message is a string containing the user's name, contact information, and comments.
+         * The user's contact information is not validated, so it may contain invalid data.
+         */
         function sendWhatsApp() {
             const name = document.getElementById('name').value;
             const contact = document.getElementById('contact').value;
@@ -1914,31 +1921,22 @@
         function openFullscreen(element) {
             // If the element is a button, find the closest container
             // If it's already a container, use it directly
-            const container = element.classList.contains('image-control-btn') ? 
-                element.closest('.story-img, .about-image, .help-image, .gallery-thumb, .help-card') : 
-                element;
+            let container;
+            if (element.classList.contains('image-control-btn')) {
+                container = element.closest('.story-img, .about-image, .help-image, .gallery-thumb, .help-card');
+            } else if (element.tagName === 'IMG') {
+                container = element.parentElement;
+            } else {
+                container = element;
+            }
             
             const img = container.querySelector('img');
-            const overlay = document.getElementById('fullscreen-overlay');
-            const fullscreenImg = document.getElementById('fullscreen-image');
+            if (!img) return;
             
-            fullscreenImg.src = img.src;
-            overlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        
-        // Close fullscreen overlay
-        function closeFullscreen() {
-            const overlay = document.getElementById('fullscreen-overlay');
-            overlay.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-        
-        // Initialize all images with proper controls and create fullscreen overlay
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize fullscreen overlay
-            if (!document.getElementById('fullscreen-overlay')) {
-                const overlay = document.createElement('div');
+            // Make sure the overlay exists
+            let overlay = document.getElementById('fullscreen-overlay');
+            if (!overlay) {
+                overlay = document.createElement('div');
                 overlay.id = 'fullscreen-overlay';
                 overlay.className = 'fullscreen-overlay';
                 overlay.innerHTML = `
@@ -1953,14 +1951,49 @@
                         closeFullscreen();
                     }
                 });
-                
-                // Close on escape key
-                document.addEventListener('keydown', function(e) {
-                    if (e.key === 'Escape' && document.getElementById('fullscreen-overlay').classList.contains('active')) {
-                        closeFullscreen();
-                    }
-                });
             }
+            
+            const fullscreenImg = document.getElementById('fullscreen-image');
+            fullscreenImg.src = img.src;
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Close fullscreen overlay
+        function closeFullscreen() {
+            const overlay = document.getElementById('fullscreen-overlay');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        // Initialize event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Close on escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && document.getElementById('fullscreen-overlay')?.classList.contains('active')) {
+                    closeFullscreen();
+                }
+            });
+            
+            // Make all images clickable
+            document.querySelectorAll('img').forEach(img => {
+                // Skip logos and icons
+                if (img.closest('.logo') || img.closest('.social-link')) return;
+                
+                img.style.cursor = 'pointer';
+                img.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    openFullscreen(this);
+                });
+            });
+            
+            // Add click event to all image containers
+            document.querySelectorAll('.story-img, .about-image, .help-image, .gallery-thumb, .help-card').forEach(container => {
+                container.style.cursor = 'pointer';
+                container.addEventListener('click', function() {
+                    openFullscreen(this);
+                });
+            });
             
             // Add smooth scrolling to all links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
