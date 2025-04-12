@@ -1,6 +1,6 @@
-
 <!-- This is the modified version of your code with help section linking -->
 <html lang="pt-BR">
+
 <head>
     <!-- Head content remains the same -->
     <meta charset="UTF-8">
@@ -19,7 +19,7 @@
             left: 0;
             z-index: 2;
         }
-        
+
         /* This ensures the image controls still work */
         .image-controls {
             position: absolute;
@@ -29,9 +29,10 @@
             gap: 5px;
             opacity: 0.7;
             transition: opacity 0.3s ease;
-            z-index: 3; /* Higher z-index to be above the help-link */
+            z-index: 3;
+            /* Higher z-index to be above the help-link */
         }
-        
+
         /* Global Styles */
         /* Define custom CSS variables (can be reused anywhere) */
         :root {
@@ -69,7 +70,7 @@
 
             /* Padding to avoid content going under fixed header */
             padding-top: 160px;
-        }   
+        }
 
         /* Header and Navigation */
         header {
@@ -97,57 +98,57 @@
                 blur(Npx): applies a blur filter (visual enhancement)
             */
             backdrop-filter: blur(5px);
-            }   
+        }
 
-            .logo-container {
-                /* Options:
+        .logo-container {
+            /* Options:
                     flex | inline-flex | block | inline-block | grid | inline-grid | table | inline-table | none
                 */
-                display: flex;
+            display: flex;
 
-                /* Align items vertically */
-                align-items: flex-end;
-                /* Options:
+            /* Align items vertically */
+            align-items: flex-end;
+            /* Options:
                     stretch | flex-start | flex-end | center | baseline
                 */
 
-                /* Align items horizontally */
-                justify-content: space-between;
-                /* Options:
+            /* Align items horizontally */
+            justify-content: space-between;
+            /* Options:
                     flex-start | flex-end | center | space-between | space-around | space-evenly
                 */
 
-                /* Top/Bottom: 20px; Left/Right: 150px */
-                padding: 20px 150px;
+            /* Top/Bottom: 20px; Left/Right: 150px */
+            padding: 20px 150px;
 
-                background-color: rgba(0, 0, 0, 0.85);
+            background-color: rgba(0, 0, 0, 0.85);
 
-                /* Adds a border to the bottom of the element */
-                border-bottom: .1px solid var(--primary-red);
-            }
+            /* Adds a border to the bottom of the element */
+            border-bottom: .1px solid var(--primary-red);
+        }
 
-            .logo {
-                width: 90px;
-                height: 90px;
-                border-radius: 50%;
-                background-color: rgba(255, 255, 255, 0.1);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                margin: 0 20px;
-                overflow: hidden;
-                position: relative;
-                padding: 5px;
-                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-                transition: transform 0.3s ease, box-shadow 0.3s ease;
-            }
+        .logo {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 20px;
+            overflow: hidden;
+            position: relative;
+            padding: 5px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
-            .left-logo,
-            .right-logo {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
+        .left-logo,
+        .right-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
         .logo:hover {
             transform: scale(1.1);
@@ -1462,7 +1463,7 @@
                     <li><a href="#stories" data-translate="nav-stories">Histórias</a></li>
                     <li><a href="#athletes" data-translate="nav-athletes">Atletas</a></li>
                     <li><a href="#help" data-translate="nav-help">Como Ajudar</a></li>
-                    <li><a href="#contact" data-translate="nav-contact">Contato</a></li>
+                    <!-- <li><a href="#contact" data-translate="nav-contact">Contato</a></li> -->
                 </ul>
                 <div class="language-selector">
                     <button class="language-btn" id="language-btn">
@@ -1725,8 +1726,8 @@
                     vidas! Você pode apoiar de diferentes formas:</p>
                 <div class="help-section-container">
                     <div class="help-options">
-                        <div class="help-card"  ">
-                            <img src="used_media/GRA_14.jpeg" alt="Doações Financeiras" class="help-card-bg">
+                        <div class="help-card" ">
+                            <img src=" used_media/GRA_14.jpeg" alt="Doações Financeiras" class="help-card-bg">
                             <div class="help-icon">💰</div>
                             <h3 class="help-title" data-translate="help-1-title">Doações Financeiras</h3>
                             <p data-translate="help-1-text">Para custos de professores, materiais de apoio, kimonos e
@@ -1738,7 +1739,7 @@
                             <h3 class="help-title" data-translate="help-2-title">Patrocínio de Atletas</h3>
                             <p data-translate="help-2-text">Ajuda com inscrições e viagens para campeonatos.</p>
                         </div>
-                        <div class="help-card"> 
+                        <div class="help-card">
                             <img src="used_media/GRA_EQUIPE_INFANTIL.jpeg" alt="Voluntariado e Parcerias"
                                 class="help-card-bg">
                             <div class="help-icon">👐</div>
@@ -1900,6 +1901,8 @@
                 'achievement-1-text': 'Nosso atleta GB conquistou o título de campeão europeu, elevando o nome do projeto internacionalmente.',
                 'achievement-2-title': 'Campeonatos Regionais',
                 'achievement-2-text': 'Diversos atletas se destacam em competições no Rio de Janeiro, conquistando medalhas e reconhecimento.',
+                'achievement-3-title': 'Campeonato Sul Americano',
+                'achievement-3-text': 'Nossos atletas representam o projeto em competições de alto nível por toda a América do Sul, conquistando medalhas e levando o nome do projeto para além das fronteiras nacionais.',
                 'help-title': 'Como Você Pode Ajudar',
                 'help-text': 'Sua contribuição nos ajuda a manter o projeto funcionando e a transformar vidas! Você pode apoiar de diferentes formas:',
                 'help-1-title': 'Doações Financeiras',
@@ -1956,6 +1959,8 @@
                 'achievement-1-text': 'Our athlete GB won the European champion title, elevating the project\'s name internationally.',
                 'achievement-2-title': 'Regional Championships',
                 'achievement-2-text': 'Several athletes stand out in competitions in Rio de Janeiro, winning medals and recognition.',
+                'achievement-3-title': 'South American Championship',
+                'achievement-3-text': 'Our athletes represent the project in high-level competitions throughout South America, winning medals and taking the project\'s name beyond national borders.',
                 'help-title': 'How You Can Help',
                 'help-text': 'Your contribution helps us keep the project running and transform lives! You can support in different ways:',
                 'help-1-title': 'Financial Donations',
@@ -2012,6 +2017,8 @@
                 'achievement-1-text': 'Notre athlète GB a remporté le titre de champion d\'Europe, élevant le nom du projet à l\'international.',
                 'achievement-2-title': 'Championnats Régionaux',
                 'achievement-2-text': 'Plusieurs athlètes se démarquent dans des compétitions à Rio de Janeiro, remportant des médailles et de la reconnaissance.',
+                'achievement-3-title': 'Championnat Sud-Américain',
+                'achievement-3-text': 'Nos athlètes représentent le projet dans des compétitions de haut niveau dans toute l\'Amérique du Sud, remportant des médailles et portant le nom du projet au-delà des frontières nationales.',
                 'help-title': 'Comment Vous Pouvez Aider',
                 'help-text': 'Votre contribution nous aide à maintenir le projet en fonctionnement et à transformer des vies ! Vous pouvez soutenir de différentes manières :',
                 'help-1-title': 'Dons Financiers',
@@ -2038,6 +2045,7 @@
                 'footer-developer': 'Développé par '
             }
         };
+
 
         // Set language
         function setLanguage(lang) {
@@ -2393,7 +2401,7 @@
             if (direction === 'next') {
                 nextIndex = (activeIndex + 1) % thumbs.length;
             } else {
-                nextIndex = (activeIndex - 1 + thumbs. length) % thumbs.length;
+                nextIndex = (activeIndex - 1 + thumbs.length) % thumbs.length;
             }
 
             // Calculate the translation amount
@@ -2403,12 +2411,12 @@
             // Apply the translation
             container.style.transform = `translateX(${translateX}px)`;
         }
-        
+
         // Add this function to initialize help links on all images
         function initializeHelpLinks() {
             // Select all image containers
             const imageContainers = document.querySelectorAll('.help-card,.help-image');
-            
+
             imageContainers.forEach(container => {
                 // Check if container already has a help link
                 if (!container.querySelector('.help-link')) {
@@ -2416,10 +2424,10 @@
                     const helpLink = document.createElement('a');
                     helpLink.className = 'help-link';
                     helpLink.href = '#help';
-                    helpLink.onclick = function(e) {
+                    helpLink.onclick = function (e) {
                         // Stop event propagation to prevent fullscreen from opening
                         e.stopPropagation();
-                        
+
                         // Smooth scroll to help section
                         const helpSection = document.querySelector('#help');
                         if (helpSection) {
@@ -2429,18 +2437,18 @@
                             });
                         }
                     };
-                    
+
                     // Set container to relative positioning if not already
                     if (window.getComputedStyle(container).position === 'static') {
                         container.style.position = 'relative';
                     }
-                    
+
                     // Add the help link to the container
                     container.appendChild(helpLink);
                 }
             });
         }
-        
+
         // Call the function when document is ready
         document.addEventListener('DOMContentLoaded', initializeHelpLinks);
     </script>
