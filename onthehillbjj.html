@@ -1,5 +1,6 @@
-<!DOCTYPE html>
+
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         /* Global Styles */
+        /* Define custom CSS variables (can be reused anywhere) */
         :root {
             --primary-red: #c10000;
             --primary-black: #1a1a1a;
@@ -14,79 +16,125 @@
             --light-gray: #e0e0e0;
             --white: #ffffff;
         }
-        
+
         * {
+            /* Removes default margin and padding from all elements */
             margin: 0;
             padding: 0;
+
+            /* Options:
+                content-box: default, width/height includes only content
+                border-box: width/height includes padding and border
+            */
             box-sizing: border-box;
+
+            /* Sets default font */
             font-family: 'Roboto', Arial, sans-serif;
         }
-        
+
         body {
+            /* Background color using CSS variable */
             background-color: var(--white);
+
+            /* Text color */
             color: var(--primary-black);
+
+            /* Controls vertical spacing between lines */
             line-height: 1.6;
-            /* Add padding-top to account for fixed header */
+
+            /* Padding to avoid content going under fixed header */
             padding-top: 160px;
-        }
-        
+        }   
+
         /* Header and Navigation */
         header {
+            /* Background color with 80% opacity */
             background-color: rgba(0, 0, 0, 0.8);
             color: var(--white);
             padding: 10px 0;
-            position: fixed; /* Change from relative to fixed */
+
+            /* Options:
+                static: default (scrolls normally)
+                relative: relative to its normal position
+                fixed: stays fixed relative to viewport
+                absolute: relative to nearest positioned ancestor
+                sticky: toggles between relative and fixed
+            */
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
+
+            /* Controls stack order */
             z-index: 1000;
+
+            /* Options:
+                blur(Npx): applies a blur filter (visual enhancement)
+            */
             backdrop-filter: blur(5px);
-        }
-        
-        .logo-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 15px 30px;
-            background-color: rgba(0, 0, 0, 0.85);
-            border-bottom: 3px solid var(--primary-red);
-        }
-        
-        .logo {
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            background-color: rgba(5, 1, 1, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 20px;
-            overflow: hidden;
-            position: relative;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .left-logo, .right-logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
+            }   
+
+            .logo-container {
+                /* Options:
+                    flex | inline-flex | block | inline-block | grid | inline-grid | table | inline-table | none
+                */
+                display: flex;
+
+                /* Align items vertically */
+                align-items: flex-end;
+                /* Options:
+                    stretch | flex-start | flex-end | center | baseline
+                */
+
+                /* Align items horizontally */
+                justify-content: space-between;
+                /* Options:
+                    flex-start | flex-end | center | space-between | space-around | space-evenly
+                */
+
+                /* Top/Bottom: 20px; Left/Right: 150px */
+                padding: 20px 150px;
+
+                background-color: rgba(0, 0, 0, 0.85);
+
+                /* Adds a border to the bottom of the element */
+                border-bottom: .1px solid var(--primary-red);
+            }
+
+            .logo {
+                width: 90px;
+                height: 90px;
+                border-radius: 50%;
+                background-color: rgba(255, 255, 255, 0.1);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 20px;
+                overflow: hidden;
+                position: relative;
+                padding: 5px;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .left-logo,
+            .right-logo {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
         .logo:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
         }
-        
+
         .logo img {
-            width: 85%;
-            height: 85%;
+            width: 100%;
+            height: 100%;
             object-fit: contain;
-            image-rendering: -webkit-optimize-contrast;
-            image-rendering: crisp-edges;
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
         }
-        
+
         .site-title {
             font-size: 24px;
             font-weight: 800;
@@ -96,7 +144,7 @@
             letter-spacing: 1px;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
-        
+
         .site-subtitle {
             font-size: 14px;
             color: var(--light-gray);
@@ -105,13 +153,13 @@
             margin-top: 4px;
             font-weight: 500;
         }
-        
+
         nav {
             background-color: rgba(255, 255, 255, 0.9);
             padding: 10px 0;
             width: 100%;
         }
-        
+
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -121,7 +169,7 @@
             padding: 0 20px;
             position: relative;
         }
-        
+
         .nav-container::before {
             content: '';
             position: absolute;
@@ -132,17 +180,17 @@
             height: 1px;
             background-color: rgba(255, 255, 255, 0.1);
         }
-        
+
         .menu {
             display: flex;
             list-style: none;
             justify-content: center;
         }
-        
+
         .menu li {
             margin: 0 5px;
         }
-        
+
         .menu li a {
             color: var(--primary-black);
             text-decoration: none;
@@ -155,7 +203,7 @@
             display: block;
             position: relative;
         }
-        
+
         .menu li a::after {
             content: '';
             position: absolute;
@@ -167,30 +215,30 @@
             transition: all 0.3s ease;
             transform: translateX(-50%);
         }
-        
+
         .menu li a:hover {
             color: var(--primary-red);
             background-color: rgba(193, 0, 0, 0.05);
         }
-        
+
         .menu li a:hover::after {
             width: 80%;
         }
-        
+
         .menu li.active a {
             color: var(--primary-red);
             background-color: rgba(193, 0, 0, 0.1);
         }
-        
+
         .menu li.active a::after {
             width: 80%;
         }
-        
+
         .language-selector {
             position: relative;
             display: inline-block;
         }
-        
+
         .language-btn {
             background-color: rgba(0, 0, 0, 0.05);
             border: 1px solid var(--primary-black);
@@ -203,31 +251,31 @@
             transition: all 0.3s ease;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        
+
         .language-btn:hover {
             background-color: rgba(0, 0, 0, 0.1);
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
         }
-        
+
         .language-btn img {
             width: 20px;
             height: 15px;
             margin-right: 5px;
         }
-        
+
         .language-options {
             position: absolute;
             top: 100%;
             right: 0;
             background-color: var(--primary-black);
             min-width: 120px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
             z-index: 1;
             border-radius: 4px;
             display: none;
         }
-        
+
         .language-option {
             color: var(--white);
             padding: 10px 15px;
@@ -236,17 +284,17 @@
             align-items: center;
             transition: background-color 0.3s;
         }
-        
+
         .language-option:hover {
             background-color: var(--primary-gray);
         }
-        
+
         .language-option img {
             width: 20px;
             height: 15px;
             margin-right: 8px;
         }
-        
+
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -255,7 +303,7 @@
             font-size: 24px;
             cursor: pointer;
         }
-        
+
         /* Hero Section */
         .hero {
             position: relative;
@@ -271,7 +319,7 @@
             background-color: var(--primary-black);
             margin-top: -20px;
         }
-        
+
         .hero::after {
             content: '';
             position: absolute;
@@ -279,10 +327,10 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6));
+            background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6));
             z-index: 1;
         }
-        
+
         .hero-video-container {
             position: absolute;
             top: 0;
@@ -292,7 +340,7 @@
             overflow: hidden;
             z-index: 0;
         }
-        
+
         .hero-video {
             position: absolute;
             top: 50%;
@@ -307,14 +355,14 @@
             max-width: none;
             max-height: none;
         }
-        
+
         @media (min-width: 1920px) {
             .hero-video {
                 width: 100%;
                 height: 100%;
             }
         }
-        
+
         .hero h1 {
             font-size: 42px;
             margin-bottom: 15px;
@@ -322,21 +370,21 @@
             font-weight: 800;
             position: relative;
             z-index: 2;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
             letter-spacing: 1px;
             max-width: 80%;
         }
-        
+
         .hero p {
             font-size: 18px;
             max-width: 700px;
             margin-bottom: 25px;
             position: relative;
             z-index: 2;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
             line-height: 1.6;
         }
-        
+
         .cta-btn {
             background-color: var(--primary-red);
             color: var(--white);
@@ -355,7 +403,7 @@
             border: 2px solid rgba(255, 255, 255, 0.2);
             letter-spacing: 1px;
         }
-        
+
         .cta-btn::before {
             content: '';
             position: absolute;
@@ -368,29 +416,29 @@
             z-index: -1;
             transition: all 0.5s ease;
         }
-        
+
         .cta-btn:hover::before {
             opacity: 0.4;
             transform: scale(1.1);
         }
-        
+
         .cta-btn:hover {
             background-color: #990000;
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(193, 0, 0, 0.5);
         }
-        
+
         /* Main Content */
         .main-content {
             max-width: 1200px;
             margin: 50px auto;
             padding: 0 20px;
         }
-        
+
         .section {
             margin-bottom: 60px;
         }
-        
+
         .section-title {
             font-size: 32px;
             margin-bottom: 25px;
@@ -398,7 +446,7 @@
             position: relative;
             padding-bottom: 15px;
         }
-        
+
         .section-title::after {
             content: '';
             position: absolute;
@@ -408,12 +456,12 @@
             width: 80px;
             background-color: var(--primary-red);
         }
-        
+
         .section-content {
             font-size: 16px;
             line-height: 1.8;
         }
-        
+
         /* About Section */
         .about-gallery {
             display: grid;
@@ -421,8 +469,11 @@
             gap: 20px;
             margin-top: 30px;
         }
-        
-        .about-image, .story-img, .help-image, .gallery-thumb {
+
+        .about-image,
+        .story-img,
+        .help-image,
+        .gallery-thumb {
             position: relative;
             overflow: hidden;
             border-radius: 10px;
@@ -430,16 +481,19 @@
             cursor: pointer;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        
-        .about-image:hover, .story-img:hover, .help-image:hover, .gallery-thumb:hover {
+
+        .about-image:hover,
+        .story-img:hover,
+        .help-image:hover,
+        .gallery-thumb:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
         }
-        
+
         .about-image:hover {
             transform: scale(1.03);
         }
-        
+
         .gallery-thumb {
             width: calc(33.33% - 10px);
             height: 100px;
@@ -449,7 +503,7 @@
             transition: transform 0.3s ease;
             position: relative;
         }
-        
+
         .gallery-thumb img {
             width: 100%;
             height: 100%;
@@ -458,11 +512,11 @@
             image-rendering: -webkit-optimize-contrast;
             image-rendering: crisp-edges;
         }
-        
+
         .gallery-thumb:hover img {
             transform: scale(1.1);
         }
-        
+
         .gallery-img {
             width: 100%;
             height: 250px;
@@ -472,49 +526,49 @@
             image-rendering: -webkit-optimize-contrast;
             image-rendering: crisp-edges;
         }
-        
+
         @media (min-width: 1440px) {
             .gallery-img {
                 height: 350px;
             }
         }
-        
+
         .gallery-img:hover {
             transform: scale(1.1);
         }
-        
+
         @media (max-width: 768px) {
             .about-gallery {
                 grid-template-columns: 1fr;
             }
         }
-        
+
         .mission-list {
             list-style: none;
             margin: 20px 0;
         }
-        
+
         .mission-list li {
             position: relative;
             padding-left: 30px;
             margin-bottom: 15px;
         }
-        
+
         .mission-list li::before {
             content: '✅';
             position: absolute;
             left: 0;
             top: 2px;
         }
-        
+
         /* Mission Section Styling */
         .mission-container {
             background-color: var(--light-gray);
             border-radius: 10px;
             padding: 30px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
-        
+
         .mission-title {
             color: var(--primary-red);
             font-size: 20px;
@@ -523,13 +577,13 @@
             display: flex;
             align-items: center;
         }
-        
+
         .mission-title::before {
             content: '🎯';
             margin-right: 10px;
             font-size: 24px;
         }
-        
+
         /* Success Stories */
         .stories {
             display: grid;
@@ -537,7 +591,7 @@
             gap: 30px;
             margin-top: 30px;
         }
-        
+
         /* Image display controls */
         .image-controls {
             position: absolute;
@@ -548,25 +602,25 @@
             opacity: 0.7;
             transition: opacity 0.3s ease;
         }
-        
-        .about-image:hover .image-controls, 
-        .story-img:hover .image-controls, 
-        .help-image:hover .image-controls, 
+
+        .about-image:hover .image-controls,
+        .story-img:hover .image-controls,
+        .help-image:hover .image-controls,
         .gallery-thumb:hover .image-controls {
             opacity: 1;
         }
-        
+
         .gallery-thumb .image-controls {
             bottom: 5px;
             right: 5px;
         }
-        
+
         .gallery-thumb .image-control-btn {
             width: 24px;
             height: 24px;
             font-size: 12px;
         }
-        
+
         .image-control-btn {
             background-color: rgba(0, 0, 0, 0.7);
             color: white;
@@ -580,12 +634,12 @@
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.3s ease;
         }
-        
+
         .image-control-btn:hover {
             background-color: var(--primary-red);
             transform: scale(1.1);
         }
-        
+
         /* Fullscreen image overlay */
         .fullscreen-overlay {
             position: fixed;
@@ -601,12 +655,12 @@
             opacity: 0;
             transition: opacity 0.3s ease;
         }
-        
+
         .fullscreen-overlay.active {
             display: flex;
             opacity: 1;
         }
-        
+
         .fullscreen-image {
             max-width: 90%;
             max-height: 90%;
@@ -615,11 +669,11 @@
             transform: scale(0.95);
             transition: transform 0.3s ease;
         }
-        
+
         .fullscreen-overlay.active .fullscreen-image {
             transform: scale(1);
         }
-        
+
         .close-fullscreen {
             position: absolute;
             top: 20px;
@@ -637,31 +691,31 @@
             justify-content: center;
             transition: all 0.3s ease;
         }
-        
+
         .close-fullscreen:hover {
             background-color: var(--primary-red);
             transform: rotate(90deg);
         }
-        
+
         .story-card {
             background-color: var(--white);
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s;
         }
-        
+
         .story-card:hover {
             transform: translateY(-5px);
         }
-        
+
         .story-img {
             height: auto;
             aspect-ratio: 16/9;
             overflow: hidden;
             position: relative;
         }
-        
+
         .story-img img {
             width: 100%;
             height: 100%;
@@ -670,38 +724,38 @@
             image-rendering: -webkit-optimize-contrast;
             image-rendering: crisp-edges;
         }
-        
+
         .story-card:hover .story-img img {
             transform: scale(1.1);
         }
-        
+
         .story-content {
             padding: 20px;
         }
-        
+
         .story-title {
             font-size: 18px;
             margin-bottom: 10px;
             color: var(--primary-black);
         }
-        
+
         .story-text-container {
             position: relative;
             max-height: 80px;
             overflow: hidden;
             transition: max-height 0.5s ease;
         }
-        
+
         .story-text-container.expanded {
             max-height: 1000px;
         }
-        
+
         .story-text {
             margin-bottom: 15px;
             font-size: 14px;
             line-height: 1.6;
         }
-        
+
         .read-more {
             color: var(--primary-red);
             cursor: pointer;
@@ -709,7 +763,7 @@
             display: inline-block;
             margin-top: 10px;
         }
-        
+
         .story-gallery {
             display: none;
             margin-top: 15px;
@@ -717,18 +771,18 @@
             width: 100%;
             overflow-x: hidden;
         }
-        
+
         .story-gallery.visible {
             display: block;
         }
-        
+
         .gallery-container {
             display: flex;
             width: 100%;
             transition: transform 0.3s ease;
             gap: 10px;
         }
-        
+
         .gallery-thumb {
             height: 180px;
             border-radius: 4px;
@@ -736,7 +790,7 @@
             flex: 0 0 100%;
             position: relative;
         }
-        
+
         .gallery-thumb img {
             width: 100%;
             height: 100%;
@@ -744,46 +798,46 @@
             image-rendering: -webkit-optimize-contrast;
             image-rendering: crisp-edges;
         }
-        
+
         .story-card:hover {
             transform: translateY(-5px);
         }
-        
+
         .story-img {
             height: 200px;
             background-color: var(--primary-gray);
         }
-        
+
         .story-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-        
+
         .story-content {
             padding: 20px;
         }
-        
+
         .story-title {
             font-size: 20px;
             margin-bottom: 10px;
             color: var(--primary-black);
         }
-        
+
         /* How to Help */
         .help-section-container {
             display: block;
             margin-top: 30px;
         }
-        
+
         .help-image {
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
             height: 450px;
             transform: translateY(-20px);
         }
-        
+
         .help-image img {
             width: 100%;
             height: 100%;
@@ -792,36 +846,36 @@
             image-rendering: -webkit-optimize-contrast;
             image-rendering: crisp-edges;
         }
-        
+
         .help-image:hover img {
             transform: scale(1.05);
         }
-        
+
         .help-options {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 25px;
             margin-top: 30px;
         }
-        
+
         @media (max-width: 992px) {
             .help-options {
                 grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             }
         }
-        
+
         @media (max-width: 768px) {
             .help-section-container {
                 grid-template-columns: 1fr;
             }
         }
-        
+
         .help-card {
             position: relative;
             border-radius: 12px;
             padding: 25px;
             text-align: center;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             overflow: hidden;
             height: 100%;
@@ -831,7 +885,7 @@
             color: var(--white);
             cursor: pointer;
         }
-        
+
         .help-card::before {
             content: '';
             position: absolute;
@@ -839,10 +893,10 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.1) 100%);
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 60%, rgba(0, 0, 0, 0.1) 100%);
             z-index: 1;
         }
-        
+
         .help-card-bg {
             position: absolute;
             top: 0;
@@ -854,25 +908,25 @@
             z-index: -1;
             transition: transform 0.5s ease, opacity 0.5s ease;
         }
-        
+
         .help-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
         }
-        
+
         .help-card:hover .help-card-bg {
             transform: scale(1.05);
         }
-        
+
         .help-icon {
             font-size: 40px;
             color: white;
             margin-bottom: 15px;
             position: relative;
             z-index: 2;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
-        
+
         .help-title {
             font-size: 22px;
             margin: 15px 0 10px;
@@ -881,9 +935,9 @@
             position: relative;
             display: inline-block;
             z-index: 2;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
         }
-        
+
         .help-title::after {
             content: '';
             position: absolute;
@@ -895,7 +949,7 @@
             background-color: var(--primary-red);
             z-index: 2;
         }
-        
+
         .help-card p {
             color: rgba(255, 255, 255, 0.9);
             position: relative;
@@ -926,7 +980,7 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-        
+
         .help-button:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(220, 53, 69, 0.4);
@@ -943,7 +997,7 @@
             padding: 20px;
             background-color: var(--light-gray);
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .form-group {
@@ -1013,20 +1067,20 @@
             color: var(--white);
             padding: 60px 0;
         }
-        
+
         .contact-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
-        
+
         .contact-title {
             font-size: 32px;
             margin-bottom: 25px;
             position: relative;
             padding-bottom: 15px;
         }
-        
+
         .contact-title::after {
             content: '';
             position: absolute;
@@ -1036,7 +1090,7 @@
             width: 80px;
             background-color: var(--primary-red);
         }
-        
+
         .contact-info {
             display: flex;
             flex-direction: column;
@@ -1044,7 +1098,7 @@
             margin-bottom: 30px;
             color: var(--white);
         }
-        
+
         .contact-icon {
             font-size: 28px;
             margin-right: 20px;
@@ -1058,7 +1112,7 @@
             border-radius: 50%;
             flex-shrink: 0;
         }
-        
+
         .contact-item {
             display: flex;
             align-items: center;
@@ -1070,12 +1124,12 @@
             max-width: 500px;
             transition: transform 0.3s ease, background-color 0.3s ease;
         }
-        
+
         .contact-item:hover {
             transform: translateY(-3px);
             background-color: rgba(255, 255, 255, 0.15);
         }
-        
+
         .contact-map {
             width: 100%;
             height: 300px;
@@ -1083,14 +1137,14 @@
             margin-top: 30px;
             border-radius: 8px;
         }
-        
+
         .contact-map iframe {
             width: 100%;
             height: 100%;
             border: none;
             border-radius: 8px;
         }
-        
+
         /* Footer */
         footer {
             background-color: var(--primary-black);
@@ -1098,19 +1152,48 @@
             padding: 30px 0;
             text-align: center;
         }
-        
+
         .footer-content {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
-        
+
+        .footer-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            overflow: hidden;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 5px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .footer-logo:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+
+        .footer-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
         .social-links {
             display: flex;
             justify-content: center;
             margin-bottom: 25px;
         }
-        
+
         .social-link {
             background-color: var(--primary-red);
             color: var(--white);
@@ -1121,20 +1204,20 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
-        
+
         .social-link:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
             background-color: #e63946;
         }
-        
+
         .footer-text {
             font-size: 14px;
             margin-bottom: 10px;
         }
-        
+
         .developer-link {
             color: var(--primary-red);
             text-decoration: none;
@@ -1143,7 +1226,7 @@
             position: relative;
             padding: 2px 5px;
         }
-        
+
         .developer-link::after {
             content: '';
             position: absolute;
@@ -1156,55 +1239,55 @@
             transform-origin: bottom right;
             transition: transform 0.3s ease;
         }
-        
+
         .developer-link:hover {
             color: #e63946;
         }
-        
+
         .developer-link:hover::after {
             transform: scaleX(1);
             transform-origin: bottom left;
         }
-        
+
         /* Responsive Design */
         /* High-resolution screens */
         @media (min-width: 2560px) {
             .hero {
                 height: 85vh;
             }
-            
+
             .hero-video {
                 width: 100%;
                 height: 100%;
             }
-            
+
             .section-content {
                 max-width: 1800px;
                 margin: 0 auto;
             }
-            
+
             .about-gallery {
                 grid-template-columns: repeat(4, 1fr);
             }
-            
+
             .stories {
                 grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
             }
         }
-        
+
         @media (max-width: 768px) {
             body {
                 /* Adjust padding for mobile */
                 padding-top: 180px;
             }
-            
+
             .logo-container {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
                 flex-wrap: nowrap;
             }
-            
+
             .logo {
                 width: 50px;
                 height: 50px;
@@ -1214,91 +1297,92 @@
                 justify-content: center;
                 flex-shrink: 0;
             }
-            
-            .left-logo, .right-logo {
+
+            .left-logo,
+            .right-logo {
                 align-self: center;
             }
-            
+
             .logo-container {
                 padding: 10px 15px;
             }
-            
+
             .logo img {
                 width: 100%;
                 height: 100%;
                 object-fit: contain;
             }
-            
+
             .title-container {
                 flex: 1;
                 text-align: center;
                 padding: 0 5px;
             }
-            
+
             .site-title {
                 font-size: 18px;
                 max-width: 150px;
             }
-            
+
             .site-subtitle {
                 font-size: 12px;
             }
-            
+
             .nav-container {
                 flex-direction: column;
             }
-            
+
             .menu {
                 flex-direction: column;
                 width: 100%;
                 display: none;
                 margin-top: 15px;
             }
-            
+
             .menu.active {
                 display: flex;
             }
-            
+
             .menu li {
                 margin-right: 0;
                 margin-bottom: 10px;
                 text-align: center;
             }
-            
+
             .mobile-menu-btn {
                 display: block;
                 position: absolute;
                 top: 10px;
                 right: 20px;
             }
-            
+
             .language-selector {
                 margin-top: 15px;
             }
-            
+
             .hero h1 {
                 font-size: 32px;
             }
-            
+
             .hero p {
                 font-size: 16px;
             }
-            
+
             .section-title {
                 font-size: 28px;
             }
-            
+
             .gallery-thumb {
                 height: 200px;
             }
-            
+
             .gallery-navigation {
                 display: flex;
                 justify-content: center;
                 gap: 10px;
                 margin-top: 10px;
             }
-            
+
             .gallery-nav-btn {
                 background-color: var(--primary-red);
                 color: white;
@@ -1312,18 +1396,24 @@
                 cursor: pointer;
                 transition: background-color 0.3s ease, transform 0.3s ease;
             }
-            
+
             .gallery-nav-btn:hover {
                 background-color: #e63946;
                 transform: scale(1.1);
             }
-            
+
             .image-controls {
                 opacity: 0.9;
+            }
+
+            .footer-logo {
+                width: 60px;
+                height: 60px;
             }
         }
     </style>
 </head>
+
 <body>
     <header>
         <div class="logo-container">
@@ -1351,24 +1441,28 @@
                 </ul>
                 <div class="language-selector">
                     <button class="language-btn" id="language-btn">
-                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMCAyMCI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjMDA5YzNiIi8+PHBvbHlnb24gcG9pbnRzPSIxNSwyIDAsMTAgMzAsMTAiIGZpbGw9IiNmZWRmMDAiLz48Y2lyY2xlIGN4PSIxNSIgY3k9IjEwIiByPSI1IiBmaWxsPSIjMDAyNzc2Ii8+PC9zdmc+" alt="BR" id="current-flag"> <span data-translate="current-language">Português</span>
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMCAyMCI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjMDA5YzNiIi8+PHBvbHlnb24gcG9pbnRzPSIxNSwyIDAsMTAgMzAsMTAiIGZpbGw9IiNmZWRmMDAiLz48Y2lyY2xlIGN4PSIxNSIgY3k9IjEwIiByPSI1IiBmaWxsPSIjMDAyNzc2Ii8+PC9zdmc+"
+                            alt="BR" id="current-flag"> <span data-translate="current-language">Português</span>
                     </button>
                     <div class="language-options" id="language-options">
                         <a href="#" class="language-option" data-lang="pt-BR">
-                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMCAyMCI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjMDA5YzNiIi8+PHBvbHlnb24gcG9pbnRzPSIxNSwyIDAsMTAgMzAsMTAiIGZpbGw9IiNmZWRmMDAiLz48Y2lyY2xlIGN4PSIxNSIgY3k9IjEwIiByPSI1IiBmaWxsPSIjMDAyNzc2Ii8+PC9zdmc+" alt="Português"> Português
+                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMCAyMCI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjMDA5YzNiIi8+PHBvbHlnb24gcG9pbnRzPSIxNSwyIDAsMTAgMzAsMTAiIGZpbGw9IiNmZWRmMDAiLz48Y2lyY2xlIGN4PSIxNSIgY3k9IjEwIiByPSI1IiBmaWxsPSIjMDAyNzc2Ii8+PC9zdmc+"
+                                alt="Português"> Português
                         </a>
                         <a href="#" class="language-option" data-lang="en-US">
-                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMCAyMCI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjIuMiIgZmlsbD0iI2IyMjIzNCIvPjxyZWN0IHg9IjAiIHk9IjQuNCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjIuMiIgZmlsbD0iI2IyMjIzNCIvPjxyZWN0IHg9IjAiIHk9IjguOCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjIuMiIgZmlsbD0iI2IyMjIzNCIvPjxyZWN0IHg9IjAiIHk9IjEzLjIiIHdpZHRoPSIzMCIgaGVpZ2h0PSIyLjIiIGZpbGw9IiNiMjIyMzQiLz48cmVjdCB4PSIwIiB5PSIxNy42IiB3aWR0aD0iMzAiIGhlaWdodD0iMi4yIiBmaWxsPSIjYjIyMjM0Ii8+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjE1IiBoZWlnaHQ9IjEwLjgiIGZpbGw9IiMzYzNiNmUiLz48L3N2Zz4=" alt="English"> English
+                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMCAyMCI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjIuMiIgZmlsbD0iI2IyMjIzNCIvPjxyZWN0IHg9IjAiIHk9IjQuNCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjIuMiIgZmlsbD0iI2IyMjIzNCIvPjxyZWN0IHg9IjAiIHk9IjguOCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjIuMiIgZmlsbD0iI2IyMjIzNCIvPjxyZWN0IHg9IjAiIHk9IjEzLjIiIHdpZHRoPSIzMCIgaGVpZ2h0PSIyLjIiIGZpbGw9IiNiMjIyMzQiLz48cmVjdCB4PSIwIiB5PSIxNy42IiB3aWR0aD0iMzAiIGhlaWdodD0iMi4yIiBmaWxsPSIjYjIyMjM0Ii8+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjE1IiBoZWlnaHQ9IjEwLjgiIGZpbGw9IiMzYzNiNmUiLz48L3N2Zz4="
+                                alt="English"> English
                         </a>
                         <a href="#" class="language-option" data-lang="fr-FR">
-                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMCAyMCI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjZmZmIi8+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjMDAyMzk1Ii8+PHJlY3QgeD0iMjAiIHk9IjAiIHdpZHRoPSIxMCIgaGVpZ2h0PSIyMCIgZmlsbD0iI2VkMjkzOSIvPjwvc3ZnPg==" alt="Français"> Français
+                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMCAyMCI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjZmZmIi8+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjMDAyMzk1Ii8+PHJlY3QgeD0iMjAiIHk9IjAiIHdpZHRoPSIxMCIgaGVpZ2h0PSIyMCIgZmlsbD0iI2VkMjkzOSIvPjwvc3ZnPg=="
+                                alt="Français"> Français
                         </a>
                     </div>
                 </div>
             </div>
         </nav>
     </header>
-    
+
     <section class="hero">
         <div class="hero-video-container">
             <video class="hero-video" autoplay loop muted playsinline>
@@ -1376,58 +1470,72 @@
             </video>
         </div>
         <h1 data-translate="hero-title">🏅 Onthehill: Transformando Realidades na Babilônia</h1>
-        <p data-translate="hero-text">Projeto de jiu-jitsu que transforma vidas na comunidade da Babilônia através do esporte, disciplina e valores.</p>
+        <p data-translate="hero-text">Projeto de jiu-jitsu que transforma vidas na comunidade da Babilônia através do
+            esporte, disciplina e valores.</p>
         <a href="#help" class="cta-btn" data-translate="hero-cta">Contribua Agora</a>
     </section>
-    
+
     <main class="main-content">
         <section id="about" class="section">
             <h2 class="section-title" data-translate="about-title">Quem Somos</h2>
             <div class="section-content">
-                <p data-translate="about-text">Somos um projeto social localizado na comunidade Babilônia, no bairro Leme, Rio de Janeiro. Nosso foco é proporcionar a crianças e adolescentes da Babilônia e Chapéu Mangueira uma oportunidade de desenvolvimento pessoal, físico e emocional por meio do esporte. Aqui, o tatame é mais que um lugar de treino—é um espaço de acolhimento, disciplina e superação. Nosso projeto é totalmente privado e não conta com apoio governamental. Sobrevivemos graças ao empenho, amor e dedicação de voluntários, parceiros e doações. Juntos, acreditamos no poder transformador do esporte para mudar vidas!</p>
+                <p data-translate="about-text">Somos um projeto social localizado na comunidade Babilônia, no bairro
+                    Leme, Rio de Janeiro. Nosso foco é proporcionar a crianças e adolescentes da Babilônia e Chapéu
+                    Mangueira uma oportunidade de desenvolvimento pessoal, físico e emocional por meio do esporte. Aqui,
+                    o tatame é mais que um lugar de treino—é um espaço de acolhimento, disciplina e superação. Nosso
+                    projeto é totalmente privado e não conta com apoio governamental. Sobrevivemos graças ao empenho,
+                    amor e dedicação de voluntários, parceiros e doações. Juntos, acreditamos no poder transformador do
+                    esporte para mudar vidas!</p>
                 <div class="about-gallery">
-                        <div class="about-image" onclick="openFullscreen(this)">
-                            <img src="used_media/RS_COMBATE_2.jpeg" alt="Combate" class="gallery-img">
-                            <div class="image-controls">
-                                <button class="image-control-btn" onclick="event.stopPropagation(); openFullscreen(this)" title="View fullscreen"><i class="fas fa-expand-arrows-alt"></i></button>
-                            </div>
+                    <div class="about-image" onclick="openFullscreen(this)">
+                        <img src="used_media/RS_COMBATE_2.jpeg" alt="Combate" class="gallery-img">
+                        <div class="image-controls">
+                            <button class="image-control-btn" onclick="event.stopPropagation(); openFullscreen(this)"
+                                title="View fullscreen"><i class="fas fa-expand-arrows-alt"></i></button>
                         </div>
-                        <div class="about-image" onclick="openFullscreen(this)">
-                            <img src="used_media/GRA_10.jpeg" alt="Graduação" class="gallery-img">
-                            <div class="image-controls">
-                                <button class="image-control-btn" onclick="event.stopPropagation(); openFullscreen(this)" title="View fullscreen"><i class="fas fa-expand-arrows-alt"></i></button>
-                            </div>
+                    </div>
+                    <div class="about-image" onclick="openFullscreen(this)">
+                        <img src="used_media/GRA_10.jpeg" alt="Graduação" class="gallery-img">
+                        <div class="image-controls">
+                            <button class="image-control-btn" onclick="event.stopPropagation(); openFullscreen(this)"
+                                title="View fullscreen"><i class="fas fa-expand-arrows-alt"></i></button>
                         </div>
-                        <div class="about-image" onclick="openFullscreen(this)">
-                            <img src="used_media/RS_SORRISO.jpeg" alt="Sorriso" class="gallery-img">
-                            <div class="image-controls">
-                                <button class="image-control-btn" onclick="event.stopPropagation(); openFullscreen(this)" title="View fullscreen"><i class="fas fa-expand-arrows-alt"></i></button>
-                            </div>
+                    </div>
+                    <div class="about-image" onclick="openFullscreen(this)">
+                        <img src="used_media/RS_SORRISO.jpeg" alt="Sorriso" class="gallery-img">
+                        <div class="image-controls">
+                            <button class="image-control-btn" onclick="event.stopPropagation(); openFullscreen(this)"
+                                title="View fullscreen"><i class="fas fa-expand-arrows-alt"></i></button>
                         </div>
-                        <div class="about-image" onclick="openFullscreen(this)">
-                            <img src="used_media/RS_COMBATE.jpeg" alt="Combate" class="gallery-img">
-                            <div class="image-controls">
-                                <button class="image-control-btn" onclick="event.stopPropagation(); openFullscreen(this)" title="View fullscreen"><i class="fas fa-expand-arrows-alt"></i></button>
-                            </div>
+                    </div>
+                    <div class="about-image" onclick="openFullscreen(this)">
+                        <img src="used_media/RS_COMBATE.jpeg" alt="Combate" class="gallery-img">
+                        <div class="image-controls">
+                            <button class="image-control-btn" onclick="event.stopPropagation(); openFullscreen(this)"
+                                title="View fullscreen"><i class="fas fa-expand-arrows-alt"></i></button>
                         </div>
+                    </div>
                 </div>
             </div>
         </section>
-        
+
         <section id="mission" class="section">
             <h2 class="section-title" data-translate="mission-title">Nossa Missão</h2>
             <div class="section-content">
                 <div class="mission-container">
                     <div class="mission-title" data-translate="mission-values-title">Nossos Valores</div>
                     <ul class="mission-list">
-                        <li data-translate="mission-1">Incentivar crianças e adolescentes a praticarem esportes e se desenvolverem como cidadãos.</li>
-                        <li data-translate="mission-2">Oferecer um ambiente seguro e acolhedor para aprender valores como disciplina, respeito e resiliência.</li>
-                        <li data-translate="mission-3">Apoiar nossos atletas em competições, custeando inscrições, materiais de treino, kimonos e viagens.</li>
+                        <li data-translate="mission-1">Incentivar crianças e adolescentes a praticarem esportes e se
+                            desenvolverem como cidadãos.</li>
+                        <li data-translate="mission-2">Oferecer um ambiente seguro e acolhedor para aprender valores
+                            como disciplina, respeito e resiliência.</li>
+                        <li data-translate="mission-3">Apoiar nossos atletas em competições, custeando inscrições,
+                            materiais de treino, kimonos e viagens.</li>
                     </ul>
                 </div>
             </div>
         </section>
-        
+
         <section id="stories" class="section">
             <h2 class="section-title" data-translate="stories-title">Histórias de Superação</h2>
             <div class="section-content">
@@ -1436,32 +1544,46 @@
                         <div class="story-img" onclick="openFullscreen(this)">
                             <img src="used_media/EURO_CAMPEAO_GB.jpeg" alt="Gabriel GB Campeão Europeu">
                             <div class="image-controls">
-                                <button class="image-control-btn" onclick="event.stopPropagation(); openFullscreen(this)" title="View fullscreen"><i class="fas fa-expand-arrows-alt"></i></button>
+                                <button class="image-control-btn"
+                                    onclick="event.stopPropagation(); openFullscreen(this)" title="View fullscreen"><i
+                                        class="fas fa-expand-arrows-alt"></i></button>
                             </div>
                         </div>
                         <div class="story-content">
                             <h3 class="story-title" data-translate="story-1-title">Gabriel "GB" - Campeão Europeu</h3>
                             <div class="story-text-container" id="story-1-container">
-                                <p class="story-text" data-translate="story-1-text">Nosso atleta Gabriel, mais conhecido como GB, é cria da comunidade e um exemplo vivo de como o esporte pode mudar destinos. Ele começou no projeto ainda jovem e, com muito esforço e dedicação, se tornou campeão europeu de jiu-jitsu. Sua trajetória inspira os mais novos a acreditarem em um futuro melhor. Queremos que mais crianças e adolescentes possam trilhar caminhos como o de GB.</p>
+                                <p class="story-text" data-translate="story-1-text">Nosso atleta Gabriel, mais conhecido
+                                    como GB, é cria da comunidade e um exemplo vivo de como o esporte pode mudar
+                                    destinos. Ele começou no projeto ainda jovem e, com muito esforço e dedicação, se
+                                    tornou campeão europeu de jiu-jitsu. Sua trajetória inspira os mais novos a
+                                    acreditarem em um futuro melhor. Queremos que mais crianças e adolescentes possam
+                                    trilhar caminhos como o de GB.</p>
                             </div>
-                            <span class="read-more" onclick="toggleStoryContent('story-1-container', 'story-1-gallery')">Leia mais...</span>
+                            <span class="read-more"
+                                onclick="toggleStoryContent('story-1-container', 'story-1-gallery')">Leia mais...</span>
                             <div class="story-gallery" id="story-1-gallery">
                                 <div class="gallery-thumb" onclick="openFullscreen(this)">
                                     <img src="used_media/GB_MEDALHA4.jpeg" alt="GB com medalha">
                                     <div class="image-controls">
-                                        <button class="image-control-btn" onclick="event.stopPropagation(); openFullscreen(this)" title="Ver em tela cheia"><i class="fas fa-expand-arrows-alt"></i></button>
+                                        <button class="image-control-btn"
+                                            onclick="event.stopPropagation(); openFullscreen(this)"
+                                            title="Ver em tela cheia"><i class="fas fa-expand-arrows-alt"></i></button>
                                     </div>
                                 </div>
                                 <div class="gallery-thumb" onclick="openFullscreen(this)">
                                     <img src="used_media/GB_MEDALHA2.jpeg" alt="GB com medalha">
                                     <div class="image-controls">
-                                        <button class="image-control-btn" onclick="event.stopPropagation(); openFullscreen(this)" title="Ver em tela cheia"><i class="fas fa-expand-arrows-alt"></i></button>
+                                        <button class="image-control-btn"
+                                            onclick="event.stopPropagation(); openFullscreen(this)"
+                                            title="Ver em tela cheia"><i class="fas fa-expand-arrows-alt"></i></button>
                                     </div>
                                 </div>
                                 <div class="gallery-thumb" onclick="openFullscreen(this)">
                                     <img src="used_media/EURO_PODIUM.jpeg" alt="GB no pódio">
                                     <div class="image-controls">
-                                        <button class="image-control-btn" onclick="event.stopPropagation(); openFullscreen(this)" title="Ver em tela cheia"><i class="fas fa-expand-arrows-alt"></i></button>
+                                        <button class="image-control-btn"
+                                            onclick="event.stopPropagation(); openFullscreen(this)"
+                                            title="Ver em tela cheia"><i class="fas fa-expand-arrows-alt"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -1471,32 +1593,43 @@
                         <div class="story-img">
                             <img src="used_media/RS_VITORIA.jpeg" alt="Jovens Talentos">
                             <div class="image-controls">
-                                <button class="image-control-btn" onclick="openFullscreen(this)" title="View fullscreen"><i class="fas fa-expand-arrows-alt"></i></button>
+                                <button class="image-control-btn" onclick="openFullscreen(this)"
+                                    title="View fullscreen"><i class="fas fa-expand-arrows-alt"></i></button>
                             </div>
                         </div>
                         <div class="story-content">
                             <h3 class="story-title" data-translate="story-2-title">Jovens Talentos</h3>
                             <div class="story-text-container" id="story-2-container">
-                                <p class="story-text" data-translate="story-2-text">Nossos atletas mais jovens já começam a se destacar em competições regionais, mostrando que o futuro é promissor. Com dedicação e disciplina, eles estão construindo um caminho de sucesso através do esporte e levando o nome do projeto para todo o Rio de Janeiro.</p>
+                                <p class="story-text" data-translate="story-2-text">Nossos atletas mais jovens já
+                                    começam a se destacar em competições regionais, mostrando que o futuro é promissor.
+                                    Com dedicação e disciplina, eles estão construindo um caminho de sucesso através do
+                                    esporte e levando o nome do projeto para todo o Rio de Janeiro.</p>
                             </div>
-                            <span class="read-more" onclick="toggleStoryContent('story-2-container', 'story-2-gallery')">Leia mais...</span>
+                            <span class="read-more"
+                                onclick="toggleStoryContent('story-2-container', 'story-2-gallery')">Leia mais...</span>
                             <div class="story-gallery" id="story-2-gallery">
                                 <div class="gallery-thumb" onclick="openFullscreen(this)">
                                     <img src="used_media/GRA_EQUIPE_INFANTIL.jpeg" alt="Equipe infantil">
                                     <div class="image-controls">
-                                        <button class="image-control-btn" onclick="event.stopPropagation(); openFullscreen(this)" title="Ver em tela cheia"><i class="fas fa-expand-arrows-alt"></i></button>
+                                        <button class="image-control-btn"
+                                            onclick="event.stopPropagation(); openFullscreen(this)"
+                                            title="Ver em tela cheia"><i class="fas fa-expand-arrows-alt"></i></button>
                                     </div>
                                 </div>
                                 <div class="gallery-thumb" onclick="openFullscreen(this)">
                                     <img src="used_media/GRA_EQUIPE.jpeg" alt="Equipe">
                                     <div class="image-controls">
-                                        <button class="image-control-btn" onclick="event.stopPropagation(); openFullscreen(this)" title="Ver em tela cheia"><i class="fas fa-expand-arrows-alt"></i></button>
+                                        <button class="image-control-btn"
+                                            onclick="event.stopPropagation(); openFullscreen(this)"
+                                            title="Ver em tela cheia"><i class="fas fa-expand-arrows-alt"></i></button>
                                     </div>
                                 </div>
                                 <div class="gallery-thumb" onclick="openFullscreen(this)">
                                     <img src="used_media/GRA_3.jpeg" alt="Graduação">
                                     <div class="image-controls">
-                                        <button class="image-control-btn" onclick="event.stopPropagation(); openFullscreen(this)" title="Ver em tela cheia"><i class="fas fa-expand-arrows-alt"></i></button>
+                                        <button class="image-control-btn"
+                                            onclick="event.stopPropagation(); openFullscreen(this)"
+                                            title="Ver em tela cheia"><i class="fas fa-expand-arrows-alt"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -1505,63 +1638,74 @@
                 </div>
             </div>
         </section>
-        
+
         <section id="athletes" class="section">
             <h2 class="section-title" data-translate="athletes-title">Nossos Atletas e Conquistas</h2>
             <div class="section-content">
-                <p data-translate="athletes-text">Aqui, formamos campeões dentro e fora dos tatames. Nossos atletas já conquistaram diversos títulos regionais e internacionais. Cada competição e medalha são um reflexo de muito suor, dedicação e superação.</p>
+                <p data-translate="athletes-text">Aqui, formamos campeões dentro e fora dos tatames. Nossos atletas já
+                    conquistaram diversos títulos regionais e internacionais. Cada competição e medalha são um reflexo
+                    de muito suor, dedicação e superação.</p>
                 <div class="stories">
                     <div class="story-card">
                         <div class="story-img">
                             <img src="used_media/EURO_PODIUM.jpeg" alt="Campeonato Europeu">
                             <div class="image-controls">
-                                <button class="image-control-btn" onclick="openFullscreen(this)" title="View fullscreen"><i class="fas fa-expand-arrows-alt"></i></button>
+                                <button class="image-control-btn" onclick="openFullscreen(this)"
+                                    title="View fullscreen"><i class="fas fa-expand-arrows-alt"></i></button>
                             </div>
                         </div>
                         <div class="story-content">
                             <h3 class="story-title" data-translate="achievement-1-title">Campeonato Europeu</h3>
-                            <p data-translate="achievement-1-text">Nosso atleta GB conquistou o título de campeão europeu, elevando o nome do projeto internacionalmente.</p>
+                            <p data-translate="achievement-1-text">Nosso atleta GB conquistou o título de campeão
+                                europeu, elevando o nome do projeto internacionalmente.</p>
                         </div>
                     </div>
                     <div class="story-card">
                         <div class="story-img">
                             <img src="used_media/LIGA_RIO_EQUIPE.jpeg" alt="Campeonato Regional">
                             <div class="image-controls">
-                                <button class="image-control-btn" onclick="openFullscreen(this)" title="View fullscreen"><i class="fas fa-expand-arrows-alt"></i></button>
+                                <button class="image-control-btn" onclick="openFullscreen(this)"
+                                    title="View fullscreen"><i class="fas fa-expand-arrows-alt"></i></button>
                             </div>
                         </div>
                         <div class="story-content">
                             <h3 class="story-title" data-translate="achievement-2-title">Campeonatos Regionais</h3>
-                            <p data-translate="achievement-2-text">Diversos atletas se destacam em competições no Rio de Janeiro, conquistando medalhas e reconhecimento.</p>
+                            <p data-translate="achievement-2-text">Diversos atletas se destacam em competições no Rio de
+                                Janeiro, conquistando medalhas e reconhecimento.</p>
                         </div>
                     </div>
                     <div class="story-card">
                         <div class="story-img">
                             <img src="used_media/SUL_AMERICANO_MEDALHA.jpeg" alt="Campeonato Sul Americano">
                             <div class="image-controls">
-                                <button class="image-control-btn" onclick="openFullscreen(this)" title="View fullscreen"><i class="fas fa-expand-arrows-alt"></i></button>
+                                <button class="image-control-btn" onclick="openFullscreen(this)"
+                                    title="View fullscreen"><i class="fas fa-expand-arrows-alt"></i></button>
                             </div>
                         </div>
                         <div class="story-content">
                             <h3 class="story-title" data-translate="achievement-3-title">Campeonato Sul Americano</h3>
-                            <p data-translate="achievement-3-text">Nossos atletas representam o projeto em competições de alto nível por toda a América do Sul, conquistando medalhas e levando o nome do projeto para além das fronteiras nacionais.</p>
+                            <p data-translate="achievement-3-text">Nossos atletas representam o projeto em competições
+                                de alto nível por toda a América do Sul, conquistando medalhas e levando o nome do
+                                projeto para além das fronteiras nacionais.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        
+
         <section id="help" class="section">
             <h2 class="section-title" data-translate="help-title">Como Você Pode Ajudar</h2>
             <div class="section-content">
-                <p data-translate="help-text">Sua contribuição nos ajuda a manter o projeto funcionando e a transformar vidas! Você pode apoiar de diferentes formas:</p>
+                <p data-translate="help-text">Sua contribuição nos ajuda a manter o projeto funcionando e a transformar
+                    vidas! Você pode apoiar de diferentes formas:</p>
                 <div class="help-section-container">
                     <div class="help-options">
                         <div class="help-card" onclick="openFullscreen(this)">
                             <img src="used_media/GRA_14.jpeg" alt="Doações Financeiras" class="help-card-bg">
                             <div class="help-icon">💰</div>
                             <h3 class="help-title" data-translate="help-1-title">Doações Financeiras</h3>
-                            <p data-translate="help-1-text">Para custos de professores, materiais de apoio, kimonos e tatames.</p>
+                            <p data-translate="help-1-text">Para custos de professores, materiais de apoio, kimonos e
+                                tatames.</p>
                         </div>
                         <div class="help-card">
                             <img src="used_media/EURO_CAMPEAO_GB.jpeg" alt="Patrocínio de Atletas" class="help-card-bg">
@@ -1570,7 +1714,8 @@
                             <p data-translate="help-2-text">Ajuda com inscrições e viagens para campeonatos.</p>
                         </div>
                         <div class="help-card">
-                            <img src="used_media/GRA_EQUIPE_INFANTIL.jpeg" alt="Voluntariado e Parcerias" class="help-card-bg">
+                            <img src="used_media/GRA_EQUIPE_INFANTIL.jpeg" alt="Voluntariado e Parcerias"
+                                class="help-card-bg">
                             <div class="help-icon">👐</div>
                             <h3 class="help-title" data-translate="help-3-title">Voluntariado e Parcerias</h3>
                             <p data-translate="help-3-text">Para fortalecer nosso projeto e alcançar mais jovens.</p>
@@ -1579,7 +1724,8 @@
                 </div>
                 <div class="help-form-container" style="text-align: center; margin-top: 40px;">
                     <button class="help-button" onclick="toggleHelpForm()">
-                        <i class="fas fa-hands-helping"></i> <span data-translate="help-button">Clique aqui para ajudar</span>
+                        <i class="fas fa-hands-helping"></i> <span data-translate="help-button">Clique aqui para
+                            ajudar</span>
                     </button>
 
                     <form id="helpForm" class="help-form" style="display: none;">
@@ -1608,7 +1754,7 @@
             </div>
         </section>
     </main>
-    
+
     <section id="contact" class="contact">
         <div class="contact-container">
             <h2 class="contact-title" data-translate="contact-title">Junte-se a Nós!</h2>
@@ -1631,57 +1777,71 @@
                     <div class="contact-icon">📱</div>
                     <div>
                         <strong data-translate="contact-social-label">Instagram:</strong>
-                        <p><a href="https://www.instagram.com/onthehillbjj/" target="_blank" style="color: white; text-decoration: underline; font-weight: bold;">@onthehillbjj</a></p>
+                        <p><a href="https://www.instagram.com/onthehillbjj/" target="_blank"
+                                style="color: white; text-decoration: underline; font-weight: bold;">@onthehillbjj</a>
+                        </p>
                     </div>
                 </div>
             </div>
             <div class="contact-map">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3673.8904254736716!2d-43.17248482532165!3d-22.96420247962751!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9bd545785824bd%3A0x1864a53a83c61e73!2sLadeira%20Ary%20Barroso%20-%20Leme%2C%20Rio%20de%20Janeiro%20-%20RJ!5e0!3m2!1sen!2sbr!4v1712438438088!5m2!1sen!2sbr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3673.8904254736716!2d-43.17248482532165!3d-22.96420247962751!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9bd545785824bd%3A0x1864a53a83c61e73!2sLadeira%20Ary%20Barroso%20-%20Leme%2C%20Rio%20de%20Janeiro%20-%20RJ!5e0!3m2!1sen!2sbr!4v1712438438088!5m2!1sen!2sbr"
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     </section>
-    
+
     <footer>
         <div class="footer-content">
+            <div class="footer-logos">
+                <div class="footer-logo">
+                    <img src="used_media/____main_logo_on_the_hill.png" alt="On the Hill Jiu Jitsu Logo">
+                </div>
+                <div class="footer-logo">
+                    <img src="used_media/____main_logo_totti.png" alt="Totti Logo">
+                </div>
+            </div>
             <div class="social-links">
-                <a href="https://www.instagram.com/onthehillbjj/" class="social-link" target="_blank" aria-label="Instagram">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                <a href="https://www.instagram.com/onthehillbjj/" class="social-link" target="_blank">
+
+                    <i class="fab fa-instagram fa-lg" aria-hidden="true"></i>
                 </a>
             </div>
-            <p class="footer-text">&copy; 2025 On the Hill Jiu Jitsu - <span data-translate="footer-rights">Todos os direitos reservados</span></p>
+            <p class="footer-text">&copy; 2025 On the Hill Jiu Jitsu - <span data-translate="footer-rights">Todos os
+                    direitos reservados</span></p>
             <p class="footer-text">
                 <span data-translate="footer-developer">Desenvolvido por </span>
                 <a href="https://viniciusgribas.netlify.app/" target="_blank" class="developer-link">@viniciusgribas</a>
             </p>
         </div>
     </footer>
-    
+
     <script>
         // Mobile Menu Toggle
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const menu = document.querySelector('.menu');
-        
+
         mobileMenuBtn.addEventListener('click', () => {
             menu.classList.toggle('active');
         });
-        
+
         // Language Selector
         const languageBtn = document.getElementById('language-btn');
         const languageOptions = document.getElementById('language-options');
         const currentFlag = document.getElementById('current-flag');
         const currentLanguage = document.querySelector('[data-translate="current-language"]');
-        
+
         languageBtn.addEventListener('click', () => {
             languageOptions.style.display = languageOptions.style.display === 'block' ? 'none' : 'block';
         });
-        
+
         // Close language options when clicking outside
         document.addEventListener('click', (event) => {
             if (!event.target.closest('.language-selector')) {
                 languageOptions.style.display = 'none';
             }
         });
-        
+
         // Translations
         const translations = {
             'pt-BR': {
@@ -1853,11 +2013,11 @@
                 'footer-developer': 'Développé par '
             }
         };
-        
+
         // Set language
         function setLanguage(lang) {
             const elements = document.querySelectorAll('[data-translate]');
-            
+
             elements.forEach(element => {
                 const key = element.getAttribute('data-translate');
                 if (translations[lang] && translations[lang][key]) {
@@ -1868,7 +2028,7 @@
                     }
                 }
             });
-            
+
             // Update flag and language text
             const langData = {
                 'pt-BR': {
@@ -1884,17 +2044,17 @@
                     text: "Français"
                 }
             };
-            
+
             currentFlag.src = langData[lang].flag;
             currentLanguage.textContent = langData[lang].text;
-            
+
             // Update HTML lang attribute
             document.documentElement.lang = lang;
-            
+
             // Close dropdown
             languageOptions.style.display = 'none';
         }
-        
+
         // Add event listeners to language options
         document.querySelectorAll('.language-option').forEach(option => {
             option.addEventListener('click', (e) => {
@@ -1903,15 +2063,15 @@
                 setLanguage(lang);
             });
         });
-        
+
         // Set default language
         setLanguage('pt-BR');
-        
+
         // Highlight active menu item
         function setActiveMenuItem() {
             const menuItems = document.querySelectorAll('.menu li');
             const currentHash = window.location.hash || '#about';
-            
+
             menuItems.forEach(item => {
                 const link = item.querySelector('a');
                 if (link.getAttribute('href') === currentHash) {
@@ -1921,25 +2081,25 @@
                 }
             });
         }
-        
+
         // Set active menu item on page load and hash change
         window.addEventListener('load', setActiveMenuItem);
         window.addEventListener('hashchange', setActiveMenuItem);
-        
+
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                
+
                 const targetId = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
-                
+
                 if (targetElement) {
                     window.scrollTo({
                         top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
                     });
-                    
+
                     // Close mobile menu if open
                     const menu = document.querySelector('.menu');
                     if (menu && menu.classList.contains('active')) {
@@ -1948,12 +2108,12 @@
                 }
             });
         });
-        
+
         // Animation on scroll (simple implementation)
         function checkVisibility() {
             const sections = document.querySelectorAll('.section');
             const windowHeight = window.innerHeight;
-            
+
             sections.forEach(section => {
                 const sectionTop = section.getBoundingClientRect().top;
                 if (sectionTop < windowHeight - 100) {
@@ -1961,37 +2121,37 @@
                 }
             });
         }
-        
+
         window.addEventListener('scroll', checkVisibility);
         checkVisibility(); // Check on page load
 
         // Add this new function for logo image handling
         function setupLogoImage() {
             const logoImg = document.querySelector('.logo img');
-            
-            logoImg.addEventListener('load', function() {
+
+            logoImg.addEventListener('load', function () {
                 const img = this;
                 const naturalWidth = img.naturalWidth;
                 const naturalHeight = img.naturalHeight;
-                
+
                 // If image is not square, calculate the crop dimensions
                 if (naturalWidth !== naturalHeight) {
                     const size = Math.min(naturalWidth, naturalHeight);
                     const x = (naturalWidth - size) / 2;
                     const y = (naturalHeight - size) / 2;
-                    
+
                     // Apply square cropping through object-position
                     img.style.objectPosition = `-${x}px -${y}px`;
                 }
             });
-            
+
             // Error handling for logo image
-            logoImg.addEventListener('error', function() {
+            logoImg.addEventListener('error', function () {
                 console.error('Error loading logo image');
                 this.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj48Y2lyY2xlIGN4PSIxMDAiIGN5PSIxMDAiIHI9IjEwMCIgZmlsbD0iIzAwMCIvPjxwYXRoIGQ9Ik01MCwxMDBhNTAsNTAgMCAxLDAgMTAwLDAgNTAsNTAgMCAxLDAtMTAwLDB6IiBmaWxsPSIjYzEwMDAwIi8+PHRleHQgeD0iMTAwIiB5PSIxMDUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyMCIgZm9udC13ZWlnaHQ9ImJvbGQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmYiPk9USCBCSkosIDwvdGV4dD48L3N2Zz4='; // Fallback to placeholder
             });
         }
-        
+
         // Initialize logo image handling
         document.addEventListener('DOMContentLoaded', setupLogoImage);
 
@@ -2025,7 +2185,7 @@
             const mailtoUrl = `mailto:brunognorth@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
             window.location.href = mailtoUrl;
         }
-        
+
         // Open image in fullscreen overlay
         function openFullscreen(element) {
             // If the element is a button, find the closest container
@@ -2038,10 +2198,10 @@
             } else {
                 container = element;
             }
-            
+
             const img = container.querySelector('img');
             if (!img) return;
-            
+
             // Make sure the overlay exists
             let overlay = document.getElementById('fullscreen-overlay');
             if (!overlay) {
@@ -2053,71 +2213,71 @@
                     <img id="fullscreen-image" class="fullscreen-image" src="" alt="Fullscreen image">
                 `;
                 document.body.appendChild(overlay);
-                
+
                 // Close fullscreen when clicking outside the image
-                overlay.addEventListener('click', function(e) {
+                overlay.addEventListener('click', function (e) {
                     if (e.target === overlay) {
                         closeFullscreen();
                     }
                 });
             }
-            
+
             const fullscreenImg = document.getElementById('fullscreen-image');
             fullscreenImg.src = img.src;
             overlay.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
-        
+
         // Close fullscreen overlay
         function closeFullscreen() {
             const overlay = document.getElementById('fullscreen-overlay');
             overlay.classList.remove('active');
             document.body.style.overflow = '';
         }
-        
+
         // Initialize event listeners
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Close on escape key
-            document.addEventListener('keydown', function(e) {
+            document.addEventListener('keydown', function (e) {
                 if (e.key === 'Escape' && document.getElementById('fullscreen-overlay')?.classList.contains('active')) {
                     closeFullscreen();
                 }
             });
-            
+
             // Make all images clickable
             document.querySelectorAll('img').forEach(img => {
                 // Skip logos and icons
                 if (img.closest('.logo') || img.closest('.social-link')) return;
-                
+
                 img.style.cursor = 'pointer';
-                img.addEventListener('click', function(e) {
+                img.addEventListener('click', function (e) {
                     e.stopPropagation();
                     openFullscreen(this);
                 });
             });
-            
+
             // Add click event to all image containers
             document.querySelectorAll('.story-img, .about-image, .help-image, .gallery-thumb, .help-card').forEach(container => {
                 container.style.cursor = 'pointer';
-                container.addEventListener('click', function() {
+                container.addEventListener('click', function () {
                     openFullscreen(this);
                 });
             });
-            
+
             // Add smooth scrolling to all links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
-                    
+
                     const targetId = this.getAttribute('href');
                     const targetElement = document.querySelector(targetId);
-                    
+
                     if (targetElement) {
                         window.scrollTo({
                             top: targetElement.offsetTop - 80,
                             behavior: 'smooth'
                         });
-                        
+
                         // Close mobile menu if open
                         const menu = document.querySelector('.menu');
                         if (menu && menu.classList.contains('active')) {
@@ -2126,9 +2286,9 @@
                     }
                 });
             });
-        });            
-        
-        document.addEventListener('DOMContentLoaded', function() {
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
             // Add image controls to all image containers
             const imageContainers = document.querySelectorAll('.story-img, .about-image, .help-image, .gallery-thumb');
             imageContainers.forEach(container => {
@@ -2141,34 +2301,34 @@
                 }
             });
         });
-        
+
         // Story content toggle function
         function toggleStoryContent(containerId, galleryId) {
             const container = document.getElementById(containerId);
             const gallery = document.getElementById(galleryId);
             const readMoreBtn = container.nextElementSibling;
-            
+
             container.classList.toggle('expanded');
             gallery.classList.toggle('visible');
-            
+
             if (container.classList.contains('expanded')) {
                 readMoreBtn.textContent = 'Mostrar menos';
-                
+
                 // Initialize gallery navigation if not already done
                 if (!gallery.querySelector('.gallery-container')) {
                     const thumbs = Array.from(gallery.querySelectorAll('.gallery-thumb'));
-                    
+
                     // Create container for horizontal scrolling
                     const galleryContainer = document.createElement('div');
                     galleryContainer.className = 'gallery-container';
-                    
+
                     // Move all thumbs into the container
                     thumbs.forEach(thumb => {
                         galleryContainer.appendChild(thumb);
                     });
-                    
+
                     gallery.appendChild(galleryContainer);
-                    
+
                     // Add navigation buttons
                     const navDiv = document.createElement('div');
                     navDiv.className = 'gallery-navigation';
@@ -2182,27 +2342,27 @@
                 readMoreBtn.textContent = 'Leia mais...';
             }
         }
-        
+
         // Gallery navigation function
         function navigateGallery(galleryId, direction) {
             const gallery = document.getElementById(galleryId);
             const container = gallery.querySelector('.gallery-container');
             const thumbs = gallery.querySelectorAll('.gallery-thumb');
-            
+
             if (!thumbs.length) return;
-            
+
             // Get the current active thumb (first visible one)
             let activeIndex = 0;
             const style = window.getComputedStyle(container);
             const matrix = new WebKitCSSMatrix(style.transform);
             const currentTranslateX = matrix.m41;
-            
+
             if (currentTranslateX < 0) {
                 // Calculate which thumb is currently visible based on the translation
                 const thumbWidth = thumbs[0].offsetWidth;
                 activeIndex = Math.abs(Math.round(currentTranslateX / thumbWidth));
             }
-            
+
             // Calculate the next index based on direction
             let nextIndex;
             if (direction === 'next') {
@@ -2210,14 +2370,15 @@
             } else {
                 nextIndex = (activeIndex - 1 + thumbs.length) % thumbs.length;
             }
-            
+
             // Calculate the translation amount
             const thumbWidth = thumbs[0].offsetWidth;
             const translateX = -nextIndex * thumbWidth;
-            
+
             // Apply the translation
             container.style.transform = `translateX(${translateX}px)`;
         }
     </script>
 </body>
+
 </html>
