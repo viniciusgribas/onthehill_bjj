@@ -49,8 +49,7 @@ onthehill_bjj/
 │
 ├── onthehillbjj.html    # Main website file
 ├── netlify.toml         # Netlify configuration
-├── README.md           # Project documentation
-└── logo_onthehillbjj.jpg # Project logo (needs to be added)
+└── README.md           # Project documentation
 ```
 
 ## Contributing
