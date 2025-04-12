@@ -67,6 +67,12 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
+        .left-logo, .right-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
         .logo:hover {
             transform: scale(1.05);
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
@@ -539,7 +545,7 @@
             right: 10px;
             display: flex;
             gap: 5px;
-            opacity: 0;
+            opacity: 0.7;
             transition: opacity 0.3s ease;
         }
         
@@ -562,12 +568,12 @@
         }
         
         .image-control-btn {
-            background-color: rgba(0, 0, 0, 0.6);
+            background-color: rgba(0, 0, 0, 0.7);
             color: white;
-            border: none;
+            border: 2px solid rgba(255, 255, 255, 0.7);
             border-radius: 50%;
-            width: 30px;
-            height: 30px;
+            width: 36px;
+            height: 36px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -706,19 +712,29 @@
         
         .story-gallery {
             display: none;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
             margin-top: 15px;
+            position: relative;
+            width: 100%;
+            overflow-x: hidden;
         }
         
         .story-gallery.visible {
-            display: grid;
+            display: block;
+        }
+        
+        .gallery-container {
+            display: flex;
+            width: 100%;
+            transition: transform 0.3s ease;
+            gap: 10px;
         }
         
         .gallery-thumb {
-            height: 100px;
+            height: 180px;
             border-radius: 4px;
             overflow: hidden;
+            flex: 0 0 100%;
+            position: relative;
         }
         
         .gallery-thumb img {
@@ -1182,6 +1198,52 @@
                 padding-top: 180px;
             }
             
+            .logo-container {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                flex-wrap: nowrap;
+            }
+            
+            .logo {
+                width: 50px;
+                height: 50px;
+                margin: 0 5px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+            }
+            
+            .left-logo, .right-logo {
+                align-self: center;
+            }
+            
+            .logo-container {
+                padding: 10px 15px;
+            }
+            
+            .logo img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+            
+            .title-container {
+                flex: 1;
+                text-align: center;
+                padding: 0 5px;
+            }
+            
+            .site-title {
+                font-size: 18px;
+                max-width: 150px;
+            }
+            
+            .site-subtitle {
+                font-size: 12px;
+            }
+            
             .nav-container {
                 flex-direction: column;
             }
@@ -1225,6 +1287,40 @@
             .section-title {
                 font-size: 28px;
             }
+            
+            .gallery-thumb {
+                height: 200px;
+            }
+            
+            .gallery-navigation {
+                display: flex;
+                justify-content: center;
+                gap: 10px;
+                margin-top: 10px;
+            }
+            
+            .gallery-nav-btn {
+                background-color: var(--primary-red);
+                color: white;
+                border: none;
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                transition: background-color 0.3s ease, transform 0.3s ease;
+            }
+            
+            .gallery-nav-btn:hover {
+                background-color: #e63946;
+                transform: scale(1.1);
+            }
+            
+            .image-controls {
+                opacity: 0.9;
+            }
         }
     </style>
 </head>
@@ -1234,7 +1330,7 @@
             <div class="logo left-logo">
                 <img src="used_media/____main_logo_on_the_hill.png" alt="On the Hill Jiu Jitsu Logo">
             </div>
-            <div>
+            <div class="title-container">
                 <h1 class="site-title" data-translate="site-title">On the Hill Jiu Jitsu</h1>
                 <p class="site-subtitle" data-translate="site-subtitle">Projeto Social RJ</p>
             </div>
@@ -1353,19 +1449,19 @@
                                 <div class="gallery-thumb" onclick="openFullscreen(this)">
                                     <img src="used_media/GB_MEDALHA4.jpeg" alt="GB com medalha">
                                     <div class="image-controls">
-                                        <button class="image-control-btn" onclick="event.stopPropagation(); openFullscreen(this)" title="View fullscreen"><i class="fas fa-expand-arrows-alt"></i></button>
+                                        <button class="image-control-btn" onclick="event.stopPropagation(); openFullscreen(this)" title="Ver em tela cheia"><i class="fas fa-expand-arrows-alt"></i></button>
                                     </div>
                                 </div>
-                                <div class="gallery-thumb">
+                                <div class="gallery-thumb" onclick="openFullscreen(this)">
                                     <img src="used_media/GB_MEDALHA2.jpeg" alt="GB com medalha">
                                     <div class="image-controls">
-                                        <button class="image-control-btn" onclick="openFullscreen(this)" title="View fullscreen"><i class="fas fa-expand-arrows-alt"></i></button>
+                                        <button class="image-control-btn" onclick="event.stopPropagation(); openFullscreen(this)" title="Ver em tela cheia"><i class="fas fa-expand-arrows-alt"></i></button>
                                     </div>
                                 </div>
-                                <div class="gallery-thumb">
+                                <div class="gallery-thumb" onclick="openFullscreen(this)">
                                     <img src="used_media/EURO_PODIUM.jpeg" alt="GB no pódio">
                                     <div class="image-controls">
-                                        <button class="image-control-btn" onclick="openFullscreen(this)" title="View fullscreen"><i class="fas fa-expand-arrows-alt"></i></button>
+                                        <button class="image-control-btn" onclick="event.stopPropagation(); openFullscreen(this)" title="Ver em tela cheia"><i class="fas fa-expand-arrows-alt"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -1385,22 +1481,22 @@
                             </div>
                             <span class="read-more" onclick="toggleStoryContent('story-2-container', 'story-2-gallery')">Leia mais...</span>
                             <div class="story-gallery" id="story-2-gallery">
-                                <div class="gallery-thumb">
+                                <div class="gallery-thumb" onclick="openFullscreen(this)">
                                     <img src="used_media/GRA_EQUIPE_INFANTIL.jpeg" alt="Equipe infantil">
                                     <div class="image-controls">
-                                        <button class="image-control-btn" onclick="openFullscreen(this)" title="View fullscreen"><i class="fas fa-expand-arrows-alt"></i></button>
+                                        <button class="image-control-btn" onclick="event.stopPropagation(); openFullscreen(this)" title="Ver em tela cheia"><i class="fas fa-expand-arrows-alt"></i></button>
                                     </div>
                                 </div>
-                                <div class="gallery-thumb">
+                                <div class="gallery-thumb" onclick="openFullscreen(this)">
                                     <img src="used_media/GRA_EQUIPE.jpeg" alt="Equipe">
                                     <div class="image-controls">
-                                        <button class="image-control-btn" onclick="openFullscreen(this)" title="View fullscreen"><i class="fas fa-expand-arrows-alt"></i></button>
+                                        <button class="image-control-btn" onclick="event.stopPropagation(); openFullscreen(this)" title="Ver em tela cheia"><i class="fas fa-expand-arrows-alt"></i></button>
                                     </div>
                                 </div>
-                                <div class="gallery-thumb">
+                                <div class="gallery-thumb" onclick="openFullscreen(this)">
                                     <img src="used_media/GRA_3.jpeg" alt="Graduação">
                                     <div class="image-controls">
-                                        <button class="image-control-btn" onclick="openFullscreen(this)" title="View fullscreen"><i class="fas fa-expand-arrows-alt"></i></button>
+                                        <button class="image-control-btn" onclick="event.stopPropagation(); openFullscreen(this)" title="Ver em tela cheia"><i class="fas fa-expand-arrows-alt"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -2057,9 +2153,70 @@
             
             if (container.classList.contains('expanded')) {
                 readMoreBtn.textContent = 'Mostrar menos';
+                
+                // Initialize gallery navigation if not already done
+                if (!gallery.querySelector('.gallery-container')) {
+                    const thumbs = Array.from(gallery.querySelectorAll('.gallery-thumb'));
+                    
+                    // Create container for horizontal scrolling
+                    const galleryContainer = document.createElement('div');
+                    galleryContainer.className = 'gallery-container';
+                    
+                    // Move all thumbs into the container
+                    thumbs.forEach(thumb => {
+                        galleryContainer.appendChild(thumb);
+                    });
+                    
+                    gallery.appendChild(galleryContainer);
+                    
+                    // Add navigation buttons
+                    const navDiv = document.createElement('div');
+                    navDiv.className = 'gallery-navigation';
+                    navDiv.innerHTML = `
+                        <button class="gallery-nav-btn prev-btn" onclick="navigateGallery('${galleryId}', 'prev')"><i class="fas fa-chevron-left"></i></button>
+                        <button class="gallery-nav-btn next-btn" onclick="navigateGallery('${galleryId}', 'next')"><i class="fas fa-chevron-right"></i></button>
+                    `;
+                    gallery.appendChild(navDiv);
+                }
             } else {
                 readMoreBtn.textContent = 'Leia mais...';
             }
+        }
+        
+        // Gallery navigation function
+        function navigateGallery(galleryId, direction) {
+            const gallery = document.getElementById(galleryId);
+            const container = gallery.querySelector('.gallery-container');
+            const thumbs = gallery.querySelectorAll('.gallery-thumb');
+            
+            if (!thumbs.length) return;
+            
+            // Get the current active thumb (first visible one)
+            let activeIndex = 0;
+            const style = window.getComputedStyle(container);
+            const matrix = new WebKitCSSMatrix(style.transform);
+            const currentTranslateX = matrix.m41;
+            
+            if (currentTranslateX < 0) {
+                // Calculate which thumb is currently visible based on the translation
+                const thumbWidth = thumbs[0].offsetWidth;
+                activeIndex = Math.abs(Math.round(currentTranslateX / thumbWidth));
+            }
+            
+            // Calculate the next index based on direction
+            let nextIndex;
+            if (direction === 'next') {
+                nextIndex = (activeIndex + 1) % thumbs.length;
+            } else {
+                nextIndex = (activeIndex - 1 + thumbs.length) % thumbs.length;
+            }
+            
+            // Calculate the translation amount
+            const thumbWidth = thumbs[0].offsetWidth;
+            const translateX = -nextIndex * thumbWidth;
+            
+            // Apply the translation
+            container.style.transform = `translateX(${translateX}px)`;
         }
     </script>
 </body>
