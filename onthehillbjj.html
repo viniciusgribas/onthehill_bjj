@@ -2,10 +2,18 @@
 <html lang="pt-BR">
 
 <head>
-    <!-- Head content remains the same -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>On the Hill Jiu Jitsu - RJ Social Project</title>
+    <meta name="description" content="Projeto de jiu-jitsu que transforma vidas na comunidade da Babilônia no Rio de Janeiro através do esporte, disciplina e valores.">
+    <meta property="og:title" content="On the Hill Jiu Jitsu - RJ Social Project">
+    <meta property="og:description" content="A jiu-jitsu project transforming lives in the Babilônia community through sport, discipline and values.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="used_media/GRA_EQUIPE.jpeg">
+    
+    <!-- Language alternates will be added dynamically by JavaScript -->
+    <link rel="canonical" href="https://onthehillbjj.github.io/onthehillbjj.html">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         /* Your original CSS remains intact */
@@ -159,6 +167,12 @@
             width: 100%;
             height: 100%;
             object-fit: contain;
+            object-position: center center; /* This ensures the logo is properly centered */
+        }
+        
+        /* Special positioning for logos that need adjustment */
+        .logo img.adjust-position {
+            object-position: center center;
         }
 
         .site-title {
@@ -263,6 +277,167 @@
         .language-selector {
             position: relative;
             display: inline-block;
+        }
+        
+        .share-language-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .share-language-btn {
+            display: flex;
+            align-items: center;
+            padding: 8px 15px;
+            border-radius: 20px;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #333;
+        }
+        
+        .share-language-btn:hover {
+            background-color: #e9e9e9;
+            transform: translateY(-2px);
+            box-shadow: 0 3px 5px rgba(0,0,0,0.1);
+        }
+        
+        .share-language-btn img {
+            width: 20px;
+            height: 14px;
+            margin-right: 8px;
+        }
+        
+        .qr-code-container {
+            margin-top: 30px;
+            text-align: center;
+            display: none;
+        }
+        
+        .qr-code-container.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .qr-code {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #ddd;
+            margin: 0 auto;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .share-social-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 15px;
+            gap: 10px;
+        }
+        
+        .share-social-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .share-social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .share-facebook {
+            background-color: #1877f2;
+        }
+        
+        .share-twitter {
+            background-color: #1da1f2;
+        }
+        
+        .share-whatsapp {
+            background-color: #25d366;
+        }
+        
+        .share-telegram {
+            background-color: #0088cc;
+        }
+        
+        .url-container {
+            display: flex;
+            align-items: center;
+            margin: 15px auto;
+            max-width: 90%;
+            position: relative;
+        }
+        
+        .url-input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-right: none;
+            border-radius: 4px 0 0 4px;
+            font-size: 14px;
+        }
+        
+        .copy-btn {
+            background: var(--primary-red);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 0 4px 4px 0;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        
+        .copy-btn:hover {
+            background-color: #a30000;
+        }
+        
+        @media (max-width: 768px) {
+            .share-language-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .share-language-btn {
+                width: 100%;
+                justify-content: center;
+                margin-bottom: 10px;
+            }
+            
+            .url-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .url-input {
+                border-right: 1px solid #ddd;
+                border-radius: 4px 4px 0 0;
+                margin-bottom: -1px;
+            }
+            
+            .copy-btn {
+                border-radius: 0 0 4px 4px;
+            }
         }
 
         .language-btn {
@@ -1483,6 +1658,13 @@
                             <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMCAyMCI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjZmZmIi8+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjMDAyMzk1Ii8+PHJlY3QgeD0iMjAiIHk9IjAiIHdpZHRoPSIxMCIgaGVpZ2h0PSIyMCIgZmlsbD0iI2VkMjkzOSIvPjwvc3ZnPg=="
                                 alt="Français"> Français
                         </a>
+                        <hr style="margin: 10px 0; border-top: 1px solid rgba(255,255,255,0.2); width: 100%;">
+                        <div style="padding: 8px 15px; font-size: 12px; color: rgba(255,255,255,0.7);">
+                            Share URL:
+                        </div>
+                        <a href="#" class="language-option" onclick="shareCurrentUrl(); return false;">
+                            <i class="fas fa-share-alt"></i> Share Current URL
+                        </a>
                     </div>
                 </div>
             </div>
@@ -1748,6 +1930,55 @@
                         </div>
                     </div>
                 </div>
+                <div class="share-language-container">
+                    <h3 data-translate="share-title" style="width: 100%; text-align: center; margin-bottom: 10px;">Compartilhe Nosso Projeto</h3>
+                    <p data-translate="share-subtitle" style="width: 100%; text-align: center; margin-bottom: 20px;">Ajude a divulgar nosso projeto compartilhando em diferentes idiomas:</p>
+                    
+                    <a href="#" class="share-language-btn" id="share-pt-btn">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMCAyMCI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjMDA5YzNiIi8+PHBvbHlnb24gcG9pbnRzPSIxNSwyIDAsMTAgMzAsMTAiIGZpbGw9IiNmZWRmMDAiLz48Y2lyY2xlIGN4PSIxNSIgY3k9IjEwIiByPSI1IiBmaWxsPSIjMDAyNzc2Ii8+PC9zdmc+"
+                            alt="Português">
+                        <span data-translate="share-pt">Compartilhar em Português</span>
+                    </a>
+                    <a href="#" class="share-language-btn" id="share-en-btn">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMCAyMCI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjIuMiIgZmlsbD0iI2IyMjIzNCIvPjxyZWN0IHg9IjAiIHk9IjQuNCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjIuMiIgZmlsbD0iI2IyMjIzNCIvPjxyZWN0IHg9IjAiIHk9IjguOCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjIuMiIgZmlsbD0iI2IyMjIzNCIvPjxyZWN0IHg9IjAiIHk9IjEzLjIiIHdpZHRoPSIzMCIgaGVpZ2h0PSIyLjIiIGZpbGw9IiNiMjIyMzQiLz48cmVjdCB4PSIwIiB5PSIxNy42IiB3aWR0aD0iMzAiIGhlaWdodD0iMi4yIiBmaWxsPSIjYjIyMjM0Ii8+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjE1IiBoZWlnaHQ9IjEwLjgiIGZpbGw9IiMzYzNiNmUiLz48L3N2Zz4="
+                            alt="English">
+                        <span data-translate="share-en">Compartilhar em Inglês</span>
+                    </a>
+                    <a href="#" class="share-language-btn" id="share-fr-btn">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMCAyMCI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjZmZmIi8+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjMDAyMzk1Ii8+PHJlY3QgeD0iMjAiIHk9IjAiIHdpZHRoPSIxMCIgaGVpZ2h0PSIyMCIgZmlsbD0iI2VkMjkzOSIvPjwvc3ZnPg=="
+                            alt="Français">
+                        <span data-translate="share-fr">Compartilhar em Francês</span>
+                    </a>
+                    
+                    <div class="qr-code-container" id="qr-container">
+                        <div class="qr-code" id="qr-code"></div>
+                        <p id="qr-instructions" style="margin-top: 10px; font-size: 14px;">Escaneie este QR code para visitar o site</p>
+                        
+                        <div class="url-container">
+                            <input type="text" id="qr-url" class="url-input" readonly>
+                            <button id="copy-url-btn" class="copy-btn">
+                                <i class="far fa-copy"></i> <span data-translate="copy-button">Copiar</span>
+                            </button>
+                        </div>
+                        
+                        <p style="margin-top: 20px; font-size: 14px; font-weight: bold;" data-translate="share-social">Compartilhar nas redes sociais:</p>
+                        <div class="share-social-container">
+                            <a href="#" class="share-social-btn share-facebook" id="share-facebook" title="Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="share-social-btn share-twitter" id="share-twitter" title="Twitter/X">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="share-social-btn share-whatsapp" id="share-whatsapp" title="WhatsApp">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="#" class="share-social-btn share-telegram" id="share-telegram" title="Telegram">
+                                <i class="fab fa-telegram-plane"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            
                 <div class="help-form-container" style="text-align: center; margin-top: 40px;">
                     <button class="help-button" onclick="toggleHelpForm()">
                         <i class="fas fa-hands-helping"></i> <span data-translate="help-button">Clique aqui para
@@ -1911,6 +2142,15 @@
                 'help-2-text': 'Ajuda com inscrições e viagens para campeonatos.',
                 'help-3-title': 'Voluntariado e Parcerias',
                 'help-3-text': 'Para fortalecer nosso projeto e alcançar mais jovens.',
+                'share-title': 'Compartilhe Nosso Projeto',
+                'share-subtitle': 'Ajude a divulgar nosso projeto compartilhando em diferentes idiomas:',
+                'share-pt': 'Compartilhar em Português',
+                'share-en': 'Compartilhar em Inglês',
+                'share-fr': 'Compartilhar em Francês',
+                'qr-instructions': 'Escaneie este QR code para visitar o site',
+                'copy-button': 'Copiar',
+                'url-copied': 'URL copiada!',
+                'share-social': 'Compartilhar nas redes sociais:',
                 'help-button': 'Clique aqui para ajudar',
                 'form-name': 'Nome',
                 'form-contact': 'Contato',
@@ -1969,6 +2209,15 @@
                 'help-2-text': 'Help with registrations and travel to championships.',
                 'help-3-title': 'Volunteering and Partnerships',
                 'help-3-text': 'To strengthen our project and reach more young people.',
+                'share-title': 'Share Our Project',
+                'share-subtitle': 'Help spread the word by sharing in different languages:',
+                'share-pt': 'Share in Portuguese',
+                'share-en': 'Share in English',
+                'share-fr': 'Share in French',
+                'qr-instructions': 'Scan this QR code to visit the site',
+                'copy-button': 'Copy',
+                'url-copied': 'URL copied!',
+                'share-social': 'Share on social media:',
                 'help-button': 'Click here to help',
                 'form-name': 'Name',
                 'form-contact': 'Contact',
@@ -2027,6 +2276,15 @@
                 'help-2-text': 'Aide aux inscriptions et aux voyages pour les championnats.',
                 'help-3-title': 'Bénévolat et Partenariats',
                 'help-3-text': 'Pour renforcer notre projet et atteindre plus de jeunes.',
+                'share-title': 'Partagez Notre Projet',
+                'share-subtitle': 'Aidez à faire connaître notre projet en le partageant en différentes langues:',
+                'share-pt': 'Partager en Portugais',
+                'share-en': 'Partager en Anglais',
+                'share-fr': 'Partager en Français',
+                'qr-instructions': 'Scannez ce QR code pour visiter le site',
+                'copy-button': 'Copier',
+                'url-copied': 'URL copiée!',
+                'share-social': 'Partager sur les réseaux sociaux:',
                 'help-button': 'Cliquez ici pour aider',
                 'form-name': 'Nom',
                 'form-contact': 'Contact',
@@ -2047,8 +2305,8 @@
         };
 
 
-        // Set language
-        function setLanguage(lang) {
+        // Set language and update URL with language parameter
+        function setLanguage(lang, updateUrl = true) {
             const elements = document.querySelectorAll('[data-translate]');
 
             elements.forEach(element => {
@@ -2078,27 +2336,119 @@
                 }
             };
 
-            currentFlag.src = langData[lang].flag;
-            currentLanguage.textContent = langData[lang].text;
+            if (currentFlag && currentLanguage) {
+                currentFlag.src = langData[lang].flag;
+                currentLanguage.textContent = langData[lang].text;
+            }
 
             // Update HTML lang attribute
             document.documentElement.lang = lang;
 
+            // Update the URL with the language parameter
+            if (updateUrl) {
+                const url = new URL(window.location.href);
+                url.searchParams.set('lang', lang);
+                window.history.replaceState({}, '', url);
+            }
+
             // Close dropdown
-            languageOptions.style.display = 'none';
+            if (languageOptions) {
+                languageOptions.style.display = 'none';
+            }
+            
+            // Store the language preference in localStorage
+            localStorage.setItem('preferredLanguage', lang);
+        }
+        
+        // Function to get language-specific URLs
+        function getLanguageUrl(lang) {
+            const url = new URL(window.location.href);
+            url.searchParams.set('lang', lang);
+            return url.toString();
         }
 
         // Add event listeners to language options
         document.querySelectorAll('.language-option').forEach(option => {
-            option.addEventListener('click', (e) => {
-                e.preventDefault();
-                const lang = option.getAttribute('data-lang');
-                setLanguage(lang);
-            });
+            if (option.hasAttribute('data-lang')) {
+                option.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const lang = option.getAttribute('data-lang');
+                    setLanguage(lang, true);
+                });
+            }
         });
+        
+        // Function to share the current URL
+        function shareCurrentUrl() {
+            const url = window.location.href;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'On the Hill Jiu Jitsu',
+                    url: url
+                }).catch((error) => {
+                    console.log('Error sharing:', error);
+                    copyToClipboard(url);
+                });
+            } else {
+                copyToClipboard(url);
+            }
+        }
+        
+        // Helper function to copy to clipboard
+        function copyToClipboard(text) {
+            const tempInput = document.createElement('input');
+            document.body.appendChild(tempInput);
+            tempInput.value = text;
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            
+            alert('URL copiada para a área de transferência: ' + text);
+        }
 
-        // Set default language
-        setLanguage('pt-BR');
+        // Check if language is specified in the URL
+        function getLanguageFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('lang');
+        }
+
+        // Initialize language
+        document.addEventListener('DOMContentLoaded', function() {
+            // Priority: 1. URL parameter, 2. Stored preference, 3. Default (pt-BR)
+            const urlLang = getLanguageFromUrl();
+            const storedLang = localStorage.getItem('preferredLanguage');
+            const initialLang = urlLang || storedLang || 'pt-BR';
+            
+            // Only update URL if language is not already in URL and not default
+            const updateUrl = !urlLang && initialLang !== 'pt-BR';
+            setLanguage(initialLang, updateUrl);
+            
+            // Use canonical URL for language alternates
+            const baseUrl = document.querySelector('link[rel="canonical"]').href || window.location.href.split('?')[0];
+            
+            // Create language URLs with the canonical base URL
+            function getCanonicalLanguageUrl(lang) {
+                const url = new URL(baseUrl);
+                url.searchParams.set('lang', lang);
+                return url.toString();
+            }
+            
+            // Add the language URLs to the page metadata
+            const ptBrUrl = getCanonicalLanguageUrl('pt-BR');
+            const enUsUrl = getCanonicalLanguageUrl('en-US');
+            const frFrUrl = getCanonicalLanguageUrl('fr-FR');
+            
+            // Add language alternates for SEO
+            const head = document.querySelector('head');
+            const alternateLinks = `
+                <link rel="alternate" hreflang="pt-BR" href="${ptBrUrl}">
+                <link rel="alternate" hreflang="en-US" href="${enUsUrl}">
+                <link rel="alternate" hreflang="fr-FR" href="${frFrUrl}">
+                <link rel="alternate" hreflang="x-default" href="${ptBrUrl}">
+            `;
+            head.innerHTML += alternateLinks;
+        });
 
         // Highlight active menu item
         function setActiveMenuItem() {
@@ -2158,30 +2508,22 @@
         window.addEventListener('scroll', checkVisibility);
         checkVisibility(); // Check on page load
 
-        // Add this new function for logo image handling
+        // Function for logo image handling
         function setupLogoImage() {
-            const logoImg = document.querySelector('.logo img');
-
-            logoImg.addEventListener('load', function () {
-                const img = this;
-                const naturalWidth = img.naturalWidth;
-                const naturalHeight = img.naturalHeight;
-
-                // If image is not square, calculate the crop dimensions
-                if (naturalWidth !== naturalHeight) {
-                    const size = Math.min(naturalWidth, naturalHeight);
-                    const x = (naturalWidth - size) / 2;
-                    const y = (naturalHeight - size) / 2;
-
-                    // Apply square cropping through object-position
-                    img.style.objectPosition = `-${x}px -${y}px`;
-                }
-            });
-
-            // Error handling for logo image
-            logoImg.addEventListener('error', function () {
-                console.error('Error loading logo image');
-                this.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj48Y2lyY2xlIGN4PSIxMDAiIGN5PSIxMDAiIHI9IjEwMCIgZmlsbD0iIzAwMCIvPjxwYXRoIGQ9Ik01MCwxMDBhNTAsNTAgMCAxLDAgMTAwLDAgNTAsNTAgMCAxLDAtMTAwLDB6IiBmaWxsPSIjYzEwMDAwIi8+PHRleHQgeD0iMTAwIiB5PSIxMDUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyMCIgZm9udC13ZWlnaHQ9ImJvbGQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmYiPk9USCBCSkosIDwvdGV4dD48L3N2Zz4='; // Fallback to placeholder
+            const logoImgs = document.querySelectorAll('.logo img');
+            
+            logoImgs.forEach(logoImg => {
+                logoImg.addEventListener('load', function() {
+                    // Simply use the CSS to center the logo properly
+                    // No need to calculate dimensions - let object-fit: contain handle it
+                    this.style.objectPosition = 'center center';
+                });
+                
+                // Error handling for logo image
+                logoImg.addEventListener('error', function() {
+                    console.error('Error loading logo image');
+                    this.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj48Y2lyY2xlIGN4PSIxMDAiIGN5PSIxMDAiIHI9IjEwMCIgZmlsbD0iIzAwMCIvPjxwYXRoIGQ9Ik01MCwxMDBhNTAsNTAgMCAxLDAgMTAwLDAgNTAsNTAgMCAxLDAtMTAwLDB6IiBmaWxsPSIjYzEwMDAwIi8+PHRleHQgeD0iMTAwIiB5PSIxMDUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyMCIgZm9udC13ZWlnaHQ9ImJvbGQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmYiPk9USCBCSkosIDwvdGV4dD48L3N2Zz4='; // Fallback to placeholder
+                });
             });
         }
 
@@ -2451,6 +2793,166 @@
 
         // Call the function when document is ready
         document.addEventListener('DOMContentLoaded', initializeHelpLinks);
+        
+        // Share language-specific URLs
+        document.addEventListener('DOMContentLoaded', function() {
+            // Simple QR code generator function
+            function generateQRCode(text) {
+                const qrContainer = document.getElementById('qr-container');
+                const qrCodeEl = document.getElementById('qr-code');
+                const qrInstructions = document.getElementById('qr-instructions');
+                const qrUrlInput = document.getElementById('qr-url');
+                const copyButton = document.getElementById('copy-url-btn');
+                
+                // Clear previous QR code
+                qrCodeEl.innerHTML = '';
+                
+                // Show the QR container
+                qrContainer.classList.add('active');
+                
+                // Set URL in text field
+                qrUrlInput.value = text;
+                
+                // Set instructions text according to current language
+                const currentLang = document.documentElement.lang;
+                if (translations[currentLang] && translations[currentLang]['qr-instructions']) {
+                    qrInstructions.textContent = translations[currentLang]['qr-instructions'];
+                }
+                
+                // Update copy button text
+                if (translations[currentLang] && translations[currentLang]['copy-button']) {
+                    const copyBtnText = copyButton.querySelector('[data-translate="copy-button"]');
+                    if (copyBtnText) {
+                        copyBtnText.textContent = translations[currentLang]['copy-button'];
+                    }
+                }
+                
+                // Set up copy button
+                copyButton.onclick = function() {
+                    qrUrlInput.select();
+                    document.execCommand('copy');
+                    
+                    // Show feedback
+                    const originalText = copyButton.innerHTML;
+                    const feedbackText = translations[currentLang] && translations[currentLang]['url-copied'] ? 
+                        translations[currentLang]['url-copied'] : 'URL copied!';
+                    
+                    copyButton.innerHTML = `<i class="fas fa-check"></i> ${feedbackText}`;
+                    
+                    // Reset button text after 2 seconds
+                    setTimeout(() => {
+                        copyButton.innerHTML = originalText;
+                    }, 2000);
+                };
+                
+                // Generate a QR code using a free service
+                const encodedText = encodeURIComponent(text);
+                const qrCodeImg = document.createElement('img');
+                qrCodeImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodedText}`;
+                qrCodeImg.alt = 'QR Code';
+                qrCodeImg.width = 200;
+                qrCodeImg.height = 200;
+                qrCodeEl.appendChild(qrCodeImg);
+                
+                // Set up social media sharing
+                setupSocialSharing(text);
+                
+                // Scroll to show the QR code
+                setTimeout(() => {
+                    qrContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 100);
+            }
+            
+            // Function to share the URL with the selected language
+            function shareLanguageUrl(lang) {
+                // Get language-specific URL
+                const url = getLanguageUrl(lang);
+                
+                // Generate QR code for the URL
+                generateQRCode(url);
+                
+                // Try to use the Web Share API if available
+                if (navigator.share) {
+                    navigator.share({
+                        title: 'On the Hill Jiu Jitsu',
+                        text: translations[lang]['hero-text'],
+                        url: url
+                    }).then(() => {
+                        console.log('Shared successfully');
+                    }).catch((error) => {
+                        console.log('Error sharing:', error);
+                        fallbackShare(url);
+                    });
+                } else {
+                    fallbackShare(url);
+                }
+            }
+            
+            // Fallback sharing method
+            function fallbackShare(url) {
+                // Create a temporary input to copy the URL
+                const tempInput = document.createElement('input');
+                document.body.appendChild(tempInput);
+                tempInput.value = url;
+                tempInput.select();
+                document.execCommand('copy');
+                document.body.removeChild(tempInput);
+                
+                // Alert the user
+                alert('URL copiada para a área de transferência: ' + url);
+            }
+            
+            // Add event listeners to share buttons
+            document.getElementById('share-pt-btn').addEventListener('click', function(e) {
+                e.preventDefault();
+                shareLanguageUrl('pt-BR');
+            });
+            
+            document.getElementById('share-en-btn').addEventListener('click', function(e) {
+                e.preventDefault();
+                shareLanguageUrl('en-US');
+            });
+            
+            document.getElementById('share-fr-btn').addEventListener('click', function(e) {
+                e.preventDefault();
+                shareLanguageUrl('fr-FR');
+            });
+            
+            // Function to set up social media sharing buttons
+            function setupSocialSharing(url) {
+                const siteTitle = "On the Hill Jiu Jitsu";
+                const currentLang = document.documentElement.lang;
+                const siteDescription = translations[currentLang]['hero-text'];
+                
+                // Facebook
+                const shareFacebook = document.getElementById('share-facebook');
+                shareFacebook.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+                shareFacebook.target = '_blank';
+                shareFacebook.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.open(this.href, 'facebook-share', 'width=580,height=520');
+                });
+                
+                // Twitter/X
+                const shareTwitter = document.getElementById('share-twitter');
+                shareTwitter.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(siteDescription)}&url=${encodeURIComponent(url)}`;
+                shareTwitter.target = '_blank';
+                shareTwitter.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.open(this.href, 'twitter-share', 'width=550,height=420');
+                });
+                
+                // WhatsApp
+                const shareWhatsApp = document.getElementById('share-whatsapp');
+                shareWhatsApp.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(siteTitle + ' - ' + siteDescription + ' ' + url)}`;
+                shareWhatsApp.target = '_blank';
+                
+                // Telegram
+                const shareTelegram = document.getElementById('share-telegram');
+                shareTelegram.href = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(siteTitle + ' - ' + siteDescription)}`;
+                shareTelegram.target = '_blank';
+            }
+        });
     </script>
 </body>
 
