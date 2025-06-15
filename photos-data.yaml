@@ -1,0 +1,102 @@
+about:
+  - src: "used_media/RS_COMBATE_2.jpeg"
+    alt: "Combate"
+  - src: "used_media/GRA_10.jpeg"
+    alt: "Graduação"
+  - src: "used_media/RS_SORRISO.jpeg"
+    alt: "Sorriso"
+  - src: "used_media/RS_COMBATE.jpeg"
+    alt: "Combate"
+  - src: "used_media/BRA_PODIUM_ABSOLUTO.jpeg"
+    alt: "Podium"
+  - src: "used_media/COMBATE_AZUL.jpeg"
+    alt: "Combate azul"
+  - src: "used_media/PROFESSOR.jpeg"
+    alt: "Mestre Bruno Iglesias"
+  - src: "used_media/COMBATE_PRETA.jpeg"
+    alt: "Combate faixa preta"
+  - src: "used_media/GRA_EQUIPE_INFANTIL.jpeg"
+    alt: "Equipe infantil"
+  - src: "used_media/GRA_EQUIPE.jpeg"
+    alt: "Equipe"
+
+stories:
+  gabriel_gb:
+    - src: "used_media/EURO_CAMPEAO_GB.jpeg"
+      alt: "Gabriel GB Campeão Europeu"
+    - src: "used_media/GB_MEDALHA4.jpeg"
+      alt: "GB com medalha"
+    - src: "used_media/GB_MEDALHA2.jpeg"
+      alt: "GB com medalha"
+    - src: "used_media/EURO_PODIUM.jpeg"
+      alt: "GB no pódio"
+
+  
+  young_talents:
+    - src: "used_media/RS_VITORIA.jpeg"
+      alt: "Jovens Talentos"
+    - src: "used_media/GRA_EQUIPE_INFANTIL.jpeg"
+      alt: "Equipe infantil"
+    - src: "used_media/GRA_EQUIPE.jpeg"
+      alt: "Equipe"
+    - src: "used_media/GRA_3.jpeg"
+      alt: "Graduação"
+    - src: "used_media/BRA_SORRISO.jpeg"
+      alt: "Brasil sorriso"
+
+athletes:
+  european_championship:
+    - src: "used_media/EURO_PODIUM.jpeg"
+      alt: "Campeonato Europeu"
+    - src: "used_media/EURO_CAMPEAO_GB.jpeg"
+      alt: "Gabriel GB Campeão"
+    - src: "used_media/GB_MEDALHA4.jpeg"
+      alt: "Medalha GB"
+
+  regional_championships:
+    - src: "used_media/LIGA_RIO_EQUIPE.jpeg"
+      alt: "Campeonato Regional"
+    - src: "used_media/BRA_PODIUM_AZUL.jpeg"
+      alt: "Pódio azul"
+    - src: "used_media/BRA_PODIUM_TRES_AZUL.jpeg"
+      alt: "Pódio três azul"
+    - src: "used_media/BRA_PODIUM_ABSOLUTO.jpeg"
+      alt: "Pódio absoluto"
+    - src: "used_media/BRA_SERIO.jpeg"
+      alt: "Brasil sério"
+
+
+  south_american_championship:
+    - src: "used_media/SUL_AMERICANO_MEDALHA.jpeg"
+      alt: "Campeonato Sul Americano"
+    - src: "used_media/SUL_AMERCIANO_MEDALHAS.jpeg"
+      alt: "Medalhas Sul Americano"
+    - src: "used_media/SUL_AMERICANO_MEDALHA_AZUL.jpeg"
+      alt: "Medalhas Sul Americano"
+    - src: "used_media/SUL_AMERICANO_TIME.jpeg"
+      alt: "Time Sul Americano"
+
+help:
+  financial_donations:
+    - src: "used_media/GRA_14.jpeg"
+      alt: "Doações Financeiras"
+    - src: "used_media/GRA_10.jpeg"
+      alt: "Material de apoio"
+    - src: "used_media/GRA_EQUIPE.jpeg"
+      alt: "Equipe"
+
+  athlete_sponsorship:
+    - src: "used_media/EURO_CAMPEAO_GB.jpeg"
+      alt: "Patrocínio de Atletas"
+    - src: "used_media/SUL_AMERICANO_MEDALHA.jpeg"
+      alt: "Competições"
+    - src: "used_media/GB_MEDALHA2.jpeg"
+      alt: "Medalhas"
+
+  volunteering:
+    - src: "used_media/GRA_EQUIPE_INFANTIL.jpeg"
+      alt: "Voluntariado e Parcerias"
+    - src: "used_media/RS_SORRISO.jpeg"
+      alt: "Crianças felizes"
+    - src: "used_media/GRA_EQUIPE.jpeg"
+      alt: "Equipe unida"

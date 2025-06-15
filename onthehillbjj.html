@@ -15,6 +15,7 @@
     <link rel="canonical" href="https://onthehillbjj.github.io/onthehillbjj.html">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="photo-gallery.css">
     <style>
         /* Your original CSS remains intact */
         /* Just adding a small enhancement for clickable images */
@@ -841,62 +842,7 @@
             transform: scale(1.1);
         }
 
-        /* Fullscreen image overlay */
-        .fullscreen-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.95);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .fullscreen-overlay.active {
-            display: flex;
-            opacity: 1;
-        }
-
-        .fullscreen-image {
-            max-width: 90%;
-            max-height: 90%;
-            object-fit: contain;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-            transform: scale(0.95);
-            transition: transform 0.3s ease;
-        }
-
-        .fullscreen-overlay.active .fullscreen-image {
-            transform: scale(1);
-        }
-
-        .close-fullscreen {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            color: white;
-            font-size: 30px;
-            cursor: pointer;
-            z-index: 1001;
-            background-color: rgba(255, 255, 255, 0.2);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .close-fullscreen:hover {
-            background-color: var(--primary-red);
-            transform: rotate(90deg);
-        }
+        /* Fullscreen image overlay - REMOVED - Now using Instagram-style modal */
 
         .story-card {
             background-color: var(--white);
@@ -1695,34 +1641,7 @@
                     amor e dedicação de voluntários, parceiros e doações. Juntos, acreditamos no poder transformador do
                     esporte para mudar vidas!</p>
                 <div class="about-gallery">
-                    <div class="about-image" onclick="openFullscreen(this)">
-                        <img src="used_media/RS_COMBATE_2.jpeg" alt="Combate" class="gallery-img">
-                        <div class="image-controls">
-                            <button class="image-control-btn" onclick="event.stopPropagation(); openFullscreen(this)"
-                                title="View fullscreen"><i class="fas fa-expand-arrows-alt"></i></button>
-                        </div>
-                    </div>
-                    <div class="about-image" onclick="openFullscreen(this)">
-                        <img src="used_media/GRA_10.jpeg" alt="Graduação" class="gallery-img">
-                        <div class="image-controls">
-                            <button class="image-control-btn" onclick="event.stopPropagation(); openFullscreen(this)"
-                                title="View fullscreen"><i class="fas fa-expand-arrows-alt"></i></button>
-                        </div>
-                    </div>
-                    <div class="about-image" onclick="openFullscreen(this)">
-                        <img src="used_media/RS_SORRISO.jpeg" alt="Sorriso" class="gallery-img">
-                        <div class="image-controls">
-                            <button class="image-control-btn" onclick="event.stopPropagation(); openFullscreen(this)"
-                                title="View fullscreen"><i class="fas fa-expand-arrows-alt"></i></button>
-                        </div>
-                    </div>
-                    <div class="about-image" onclick="openFullscreen(this)">
-                        <img src="used_media/RS_COMBATE.jpeg" alt="Combate" class="gallery-img">
-                        <div class="image-controls">
-                            <button class="image-control-btn" onclick="event.stopPropagation(); openFullscreen(this)"
-                                title="View fullscreen"><i class="fas fa-expand-arrows-alt"></i></button>
-                        </div>
-                    </div>
+                    <!-- Photos will be populated by photo-gallery.js -->
                 </div>
             </div>
         </section>
@@ -1749,98 +1668,38 @@
             <div class="section-content">
                 <div class="stories">
                     <div class="story-card">
-                        <div class="story-img" onclick="openFullscreen(this)">
+                        <div class="story-img">
                             <img src="used_media/EURO_CAMPEAO_GB.jpeg" alt="Gabriel GB Campeão Europeu">
                             <div class="image-controls">
-                                <button class="image-control-btn"
-                                    onclick="event.stopPropagation(); openFullscreen(this)" title="View fullscreen"><i
-                                        class="fas fa-expand-arrows-alt"></i></button>
+                                <button class="image-control-btn" title="View gallery">
+                                    <i class="fas fa-images"></i>
+                                </button>
                             </div>
                         </div>
                         <div class="story-content">
                             <h3 class="story-title" data-translate="story-1-title">Gabriel "GB" - Campeão Europeu</h3>
-                            <div class="story-text-container" id="story-1-container">
-                                <p class="story-text" data-translate="story-1-text">Nosso atleta Gabriel, mais conhecido
-                                    como GB, é cria da comunidade e um exemplo vivo de como o esporte pode mudar
-                                    destinos. Ele começou no projeto ainda jovem e, com muito esforço e dedicação, se
-                                    tornou campeão europeu de jiu-jitsu. Sua trajetória inspira os mais novos a
-                                    acreditarem em um futuro melhor. Queremos que mais crianças e adolescentes possam
-                                    trilhar caminhos como o de GB.</p>
-                            </div>
-                            <span class="read-more"
-                                onclick="toggleStoryContent('story-1-container', 'story-1-gallery')">Leia mais...</span>
-                            <div class="story-gallery" id="story-1-gallery">
-                                <div class="gallery-thumb" onclick="openFullscreen(this)">
-                                    <img src="used_media/GB_MEDALHA4.jpeg" alt="GB com medalha">
-                                    <div class="image-controls">
-                                        <button class="image-control-btn"
-                                            onclick="event.stopPropagation(); openFullscreen(this)"
-                                            title="Ver em tela cheia"><i class="fas fa-expand-arrows-alt"></i></button>
-                                    </div>
-                                </div>
-                                <div class="gallery-thumb" onclick="openFullscreen(this)">
-                                    <img src="used_media/GB_MEDALHA2.jpeg" alt="GB com medalha">
-                                    <div class="image-controls">
-                                        <button class="image-control-btn"
-                                            onclick="event.stopPropagation(); openFullscreen(this)"
-                                            title="Ver em tela cheia"><i class="fas fa-expand-arrows-alt"></i></button>
-                                    </div>
-                                </div>
-                                <div class="gallery-thumb" onclick="openFullscreen(this)">
-                                    <img src="used_media/EURO_PODIUM.jpeg" alt="GB no pódio">
-                                    <div class="image-controls">
-                                        <button class="image-control-btn"
-                                            onclick="event.stopPropagation(); openFullscreen(this)"
-                                            title="Ver em tela cheia"><i class="fas fa-expand-arrows-alt"></i></button>
-                                    </div>
-                                </div>
-                            </div>
+                            <p class="story-text" data-translate="story-1-text">Nosso atleta Gabriel, mais conhecido
+                                como GB, é cria da comunidade e um exemplo vivo de como o esporte pode mudar
+                                destinos. Ele começou no projeto ainda jovem e, com muito esforço e dedicação, se
+                                tornou campeão europeu de jiu-jitsu. Sua trajetória inspira os mais novos a
+                                acreditarem em um futuro melhor.</p>
                         </div>
                     </div>
                     <div class="story-card">
                         <div class="story-img">
                             <img src="used_media/RS_VITORIA.jpeg" alt="Jovens Talentos">
                             <div class="image-controls">
-                                <button class="image-control-btn" onclick="openFullscreen(this)"
-                                    title="View fullscreen"><i class="fas fa-expand-arrows-alt"></i></button>
+                                <button class="image-control-btn" title="View gallery">
+                                    <i class="fas fa-images"></i>
+                                </button>
                             </div>
                         </div>
                         <div class="story-content">
                             <h3 class="story-title" data-translate="story-2-title">Jovens Talentos</h3>
-                            <div class="story-text-container" id="story-2-container">
-                                <p class="story-text" data-translate="story-2-text">Nossos atletas mais jovens já
-                                    começam a se destacar em competições regionais, mostrando que o futuro é promissor.
-                                    Com dedicação e disciplina, eles estão construindo um caminho de sucesso através do
-                                    esporte e levando o nome do projeto para todo o Rio de Janeiro.</p>
-                            </div>
-                            <span class="read-more"
-                                onclick="toggleStoryContent('story-2-container', 'story-2-gallery')">Leia mais...</span>
-                            <div class="story-gallery" id="story-2-gallery">
-                                <div class="gallery-thumb" onclick="openFullscreen(this)">
-                                    <img src="used_media/GRA_EQUIPE_INFANTIL.jpeg" alt="Equipe infantil">
-                                    <div class="image-controls">
-                                        <button class="image-control-btn"
-                                            onclick="event.stopPropagation(); openFullscreen(this)"
-                                            title="Ver em tela cheia"><i class="fas fa-expand-arrows-alt"></i></button>
-                                    </div>
-                                </div>
-                                <div class="gallery-thumb" onclick="openFullscreen(this)">
-                                    <img src="used_media/GRA_EQUIPE.jpeg" alt="Equipe">
-                                    <div class="image-controls">
-                                        <button class="image-control-btn"
-                                            onclick="event.stopPropagation(); openFullscreen(this)"
-                                            title="Ver em tela cheia"><i class="fas fa-expand-arrows-alt"></i></button>
-                                    </div>
-                                </div>
-                                <div class="gallery-thumb" onclick="openFullscreen(this)">
-                                    <img src="used_media/GRA_3.jpeg" alt="Graduação">
-                                    <div class="image-controls">
-                                        <button class="image-control-btn"
-                                            onclick="event.stopPropagation(); openFullscreen(this)"
-                                            title="Ver em tela cheia"><i class="fas fa-expand-arrows-alt"></i></button>
-                                    </div>
-                                </div>
-                            </div>
+                            <p class="story-text" data-translate="story-2-text">Nossos atletas mais jovens já
+                                começam a se destacar em competições regionais, mostrando que o futuro é promissor.
+                                Com dedicação e disciplina, eles estão construindo um caminho de sucesso através do
+                                esporte.</p>
                         </div>
                     </div>
                 </div>
@@ -1858,8 +1717,9 @@
                         <div class="story-img">
                             <img src="used_media/EURO_PODIUM.jpeg" alt="Campeonato Europeu">
                             <div class="image-controls">
-                                <button class="image-control-btn" onclick="openFullscreen(this)"
-                                    title="View fullscreen"><i class="fas fa-expand-arrows-alt"></i></button>
+                                <button class="image-control-btn" title="View gallery">
+                                    <i class="fas fa-images"></i>
+                                </button>
                             </div>
                         </div>
                         <div class="story-content">
@@ -1872,8 +1732,9 @@
                         <div class="story-img">
                             <img src="used_media/LIGA_RIO_EQUIPE.jpeg" alt="Campeonato Regional">
                             <div class="image-controls">
-                                <button class="image-control-btn" onclick="openFullscreen(this)"
-                                    title="View fullscreen"><i class="fas fa-expand-arrows-alt"></i></button>
+                                <button class="image-control-btn" title="View gallery">
+                                    <i class="fas fa-images"></i>
+                                </button>
                             </div>
                         </div>
                         <div class="story-content">
@@ -1886,8 +1747,9 @@
                         <div class="story-img">
                             <img src="used_media/SUL_AMERICANO_MEDALHA.jpeg" alt="Campeonato Sul Americano">
                             <div class="image-controls">
-                                <button class="image-control-btn" onclick="openFullscreen(this)"
-                                    title="View fullscreen"><i class="fas fa-expand-arrows-alt"></i></button>
+                                <button class="image-control-btn" title="View gallery">
+                                    <i class="fas fa-images"></i>
+                                </button>
                             </div>
                         </div>
                         <div class="story-content">
@@ -1908,8 +1770,8 @@
                     vidas! Você pode apoiar de diferentes formas:</p>
                 <div class="help-section-container">
                     <div class="help-options">
-                        <div class="help-card" ">
-                            <img src=" used_media/GRA_14.jpeg" alt="Doações Financeiras" class="help-card-bg">
+                        <div class="help-card">
+                            <img src="used_media/GRA_14.jpeg" alt="Doações Financeiras" class="help-card-bg">
                             <div class="help-icon">💰</div>
                             <h3 class="help-title" data-translate="help-1-title">Doações Financeiras</h3>
                             <p data-translate="help-1-text">Para custos de professores, materiais de apoio, kimonos e
@@ -2561,83 +2423,11 @@
             window.location.href = mailtoUrl;
         }
 
-        // Open image in fullscreen overlay
-        function openFullscreen(element) {
-            // If the element is a button, find the closest container
-            // If it's already a container, use it directly
-            let container;
-            if (element.classList.contains('image-control-btn')) {
-                container = element.closest('.story-img, .about-image, .help-image, .gallery-thumb, .help-card');
-            } else if (element.tagName === 'IMG') {
-                container = element.parentElement;
-            } else {
-                container = element;
-            }
-
-            const img = container.querySelector('img');
-            if (!img) return;
-
-            // Make sure the overlay exists
-            let overlay = document.getElementById('fullscreen-overlay');
-            if (!overlay) {
-                overlay = document.createElement('div');
-                overlay.id = 'fullscreen-overlay';
-                overlay.className = 'fullscreen-overlay';
-                overlay.innerHTML = `
-                    <span class="close-fullscreen" onclick="closeFullscreen()"><i class="fas fa-times"></i></span>
-                    <img id="fullscreen-image" class="fullscreen-image" src="" alt="Fullscreen image">
-                `;
-                document.body.appendChild(overlay);
-
-                // Close fullscreen when clicking outside the image
-                overlay.addEventListener('click', function (e) {
-                    if (e.target === overlay) {
-                        closeFullscreen();
-                    }
-                });
-            }
-
-            const fullscreenImg = document.getElementById('fullscreen-image');
-            fullscreenImg.src = img.src;
-            overlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        // Close fullscreen overlay
-        function closeFullscreen() {
-            const overlay = document.getElementById('fullscreen-overlay');
-            overlay.classList.remove('active');
-            document.body.style.overflow = '';
-        }
+        // Old fullscreen functions removed - now using Instagram-style modal from photo-gallery.js
 
         // Initialize event listeners
         document.addEventListener('DOMContentLoaded', function () {
-            // Close on escape key
-            document.addEventListener('keydown', function (e) {
-                if (e.key === 'Escape' && document.getElementById('fullscreen-overlay')?.classList.contains('active')) {
-                    closeFullscreen();
-                }
-            });
-
-            // Make all images clickable
-            document.querySelectorAll('img').forEach(img => {
-                // Skip logos and icons
-                if (img.closest('.logo') || img.closest('.social-link')) return;
-
-                img.style.cursor = 'pointer';
-                img.addEventListener('click', function (e) {
-                    e.stopPropagation();
-                    openFullscreen(this);
-                });
-            });
-
-            // Add click event to all image containers
-            document.querySelectorAll('.story-img, .about-image, .help-image, .gallery-thumb, .help-card').forEach(container => {
-                container.style.cursor = 'pointer';
-                container.addEventListener('click', function () {
-                    openFullscreen(this);
-                });
-            });
+            // Photo gallery interactions will be handled by PhotoGalleryManager
 
             // Add smooth scrolling to all links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -2663,96 +2453,8 @@
             });
         });
 
-        document.addEventListener('DOMContentLoaded', function () {
-            // Add image controls to all image containers
-            const imageContainers = document.querySelectorAll('.story-img, .about-image, .help-image, .gallery-thumb');
-            imageContainers.forEach(container => {
-                if (!container.querySelector('.image-controls')) {
-                    const controls = document.createElement('div');
-                    controls.className = 'image-controls';
-                    controls.innerHTML = '<button class="image-control-btn" onclick="openFullscreen(this)" title="View fullscreen"><i class="fas fa-expand-arrows-alt"></i></button>';
-                    container.style.position = 'relative';
-                    container.appendChild(controls);
-                }
-            });
-        });
-
-        // Story content toggle function
-        function toggleStoryContent(containerId, galleryId) {
-            const container = document.getElementById(containerId);
-            const gallery = document.getElementById(galleryId);
-            const readMoreBtn = container.nextElementSibling;
-
-            container.classList.toggle('expanded');
-            gallery.classList.toggle('visible');
-
-            if (container.classList.contains('expanded')) {
-                readMoreBtn.textContent = 'Mostrar menos';
-
-                // Initialize gallery navigation if not already done
-                if (!gallery.querySelector('.gallery-container')) {
-                    const thumbs = Array.from(gallery.querySelectorAll('.gallery-thumb'));
-
-                    // Create container for horizontal scrolling
-                    const galleryContainer = document.createElement('div');
-                    galleryContainer.className = 'gallery-container';
-
-                    // Move all thumbs into the container
-                    thumbs.forEach(thumb => {
-                        galleryContainer.appendChild(thumb);
-                    });
-
-                    gallery.appendChild(galleryContainer);
-
-                    // Add navigation buttons
-                    const navDiv = document.createElement('div');
-                    navDiv.className = 'gallery-navigation';
-                    navDiv.innerHTML = `
-                        <button class="gallery-nav-btn prev-btn" onclick="navigateGallery('${galleryId}', 'prev')"><i class="fas fa-chevron-left"></i></button>
-                        <button class="gallery-nav-btn next-btn" onclick="navigateGallery('${galleryId}', 'next')"><i class="fas fa-chevron-right"></i></button>
-                    `;
-                    gallery.appendChild(navDiv);
-                }
-            } else {
-                readMoreBtn.textContent = 'Leia mais...';
-            }
-        }
-
-        // Gallery navigation function
-        function navigateGallery(galleryId, direction) {
-            const gallery = document.getElementById(galleryId);
-            const container = gallery.querySelector('.gallery-container');
-            const thumbs = gallery.querySelectorAll('.gallery-thumb');
-
-            if (!thumbs.length) return;
-
-            // Get the current active thumb (first visible one)
-            let activeIndex = 0;
-            const style = window.getComputedStyle(container);
-            const matrix = new WebKitCSSMatrix(style.transform);
-            const currentTranslateX = matrix.m41;
-
-            if (currentTranslateX < 0) {
-                // Calculate which thumb is currently visible based on the translation
-                const thumbWidth = thumbs[0].offsetWidth;
-                activeIndex = Math.abs(Math.round(currentTranslateX / thumbWidth));
-            }
-
-            // Calculate the next index based on direction
-            let nextIndex;
-            if (direction === 'next') {
-                nextIndex = (activeIndex + 1) % thumbs.length;
-            } else {
-                nextIndex = (activeIndex - 1 + thumbs.length) % thumbs.length;
-            }
-
-            // Calculate the translation amount
-            const thumbWidth = thumbs[0].offsetWidth;
-            const translateX = -nextIndex * thumbWidth;
-
-            // Apply the translation
-            container.style.transform = `translateX(${translateX}px)`;
-        }
+        // Old story content and gallery navigation functions removed - now using Instagram-style modal
+        // Old image control initialization removed - now handled by PhotoGalleryManager
 
         // Add this function to initialize help links on all images
         function initializeHelpLinks() {
@@ -2954,6 +2656,7 @@
             }
         });
     </script>
+    <script src="photo-gallery.js"></script>
 </body>
 
 </html>

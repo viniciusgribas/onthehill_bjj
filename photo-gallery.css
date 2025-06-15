@@ -1,0 +1,271 @@
+/* Instagram-style Photo Gallery Modal */
+.photo-gallery-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2000;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.photo-gallery-modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    cursor: pointer;
+}
+
+.modal-content {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 20px 100px; /* Top padding for close button, bottom for dots */
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    z-index: 2001;
+    backdrop-filter: blur(10px);
+}
+
+.modal-close:hover {
+    background: var(--primary-red);
+    transform: rotate(90deg) scale(1.1);
+}
+
+.modal-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 24px;
+    transition: all 0.3s ease;
+    z-index: 2001;
+    backdrop-filter: blur(10px);
+}
+
+.modal-nav:hover {
+    background: var(--primary-red);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.modal-prev {
+    left: 30px;
+}
+
+.modal-next {
+    right: 30px;
+}
+
+.modal-image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 80px; /* Space for navigation buttons */
+}
+
+#modal-image {
+    max-width: 100%;
+    max-height: 85vh; /* Leave space for counter and dots */
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    transition: opacity 0.3s ease;
+    /* Ensure the image maintains aspect ratio and fits well */
+    display: block;
+    /* Handle very wide images */
+    min-height: 200px;
+    /* Handle very tall images */
+    min-width: 200px;
+}
+
+.modal-counter {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+}
+
+.modal-dots {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 2001;
+}
+
+#modal-dots-container {
+    display: flex;
+    gap: 8px;
+}
+
+.modal-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.modal-dot.active {
+    background: white;
+    border-color: white;
+}
+
+.modal-dot:hover {
+    border-color: var(--primary-red);
+    background: var(--primary-red);
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+    .modal-content {
+        padding: 60px 10px 80px;
+    }
+    
+    .modal-image-container {
+        padding: 0 60px; /* Less padding on mobile for navigation buttons */
+    }
+    
+    #modal-image {
+        max-height: 80vh; /* More space for UI elements on mobile */
+        max-width: 95%;
+    }
+    
+    .modal-close {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+        top: 15px;
+        right: 15px;
+    }
+    
+    .modal-nav {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+    
+    .modal-prev {
+        left: 15px;
+    }
+    
+    .modal-next {
+        right: 15px;
+    }
+    
+    .modal-counter {
+        font-size: 12px;
+        padding: 6px 12px;
+        top: 15px;
+        left: 15px;
+    }
+    
+    .modal-dots {
+        bottom: 20px;
+    }
+    
+    .modal-dot {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+/* Large screen optimizations */
+@media (min-width: 1200px) {
+    .modal-image-container {
+        padding: 0 120px; /* More space for navigation on larger screens */
+    }
+    
+    #modal-image {
+        max-height: 90vh; /* Can use more height on larger screens */
+    }
+    
+    .modal-nav {
+        width: 70px;
+        height: 70px;
+        font-size: 28px;
+    }
+    
+    .modal-prev {
+        left: 40px;
+    }
+    
+    .modal-next {
+        right: 40px;
+    }
+}
+
+/* Enhanced image controls for gallery indication */
+.image-controls .image-control-btn {
+    position: relative;
+}
+
+.image-controls .image-control-btn::after {
+    content: attr(data-count);
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: var(--primary-red);
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
