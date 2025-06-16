@@ -137,8 +137,8 @@
                     flex-start | flex-end | center | space-between | space-around | space-evenly
                 */
 
-            /* Top/Bottom: 20px; Left/Right: 150px */
-            padding: 20px 150px;
+            /* Top/Bottom: 20px; Left/Right: 100px to accommodate additional logo */
+            padding: 20px 100px;
 
             background-color: rgba(0, 0, 0, 0.85);
 
@@ -1441,14 +1441,15 @@
             .logo-container {
                 display: flex;
                 align-items: center;
-                justify-content: space-between;
-                flex-wrap: nowrap;
+                justify-content: space-evenly;
+                flex-wrap: wrap;
+                padding: 10px;
             }
 
             .logo {
-                width: 50px;
-                height: 50px;
-                margin: 0 5px;
+                width: 45px;
+                height: 45px;
+                margin: 0 3px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -1583,6 +1584,11 @@
             </div>
             <div class="logo right-logo">
                 <img src="used_media/____main_logo_totti.png" alt="Totti Logo">
+            </div>
+            <div class="logo right-logo">
+                <a href="https://www.supersaudavelshopping.com.br/" target="_blank" rel="noopener noreferrer">
+                    <img src="used_media/___patrocinador_supersaudavel.png" alt="SuperSaudável Logo">
+                </a>
             </div>
         </div>
         <button class="mobile-menu-btn">☰</button>
@@ -1928,6 +1934,11 @@
                 </div>
                 <div class="footer-logo">
                     <img src="used_media/____main_logo_totti.png" alt="Totti Logo">
+                </div>
+                <div class="footer-logo">
+                    <a href="https://www.supersaudavelshopping.com.br/" target="_blank" rel="noopener noreferrer">
+                        <img src="used_media/___patrocinador_supersaudavel.png" alt="SuperSaudável Logo">
+                    </a>
                 </div>
             </div>
             <div class="social-links">
