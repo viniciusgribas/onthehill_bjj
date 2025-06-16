@@ -1,6 +1,6 @@
 # On the Hill BJJ - Social Project Website
 
-https://onthehillbjj.netlify.app/
+[https://onthehillbjj.com/](https://onthehillbjj.com/)
 
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
